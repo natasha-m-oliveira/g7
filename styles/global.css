@@ -13,6 +13,7 @@ html {
     --grey: #C4C4C4;
     --white: #FAFAFA;
     --red: #F00038;
+    --yellow: #FFD400;
     --green: #94D21D;
     --blue-light: rgba(0, 24, 87, 0.75);
     --blue-dark: #001857;
@@ -163,8 +164,8 @@ html {
 
 .container .anchor #top-of-page {
     position: fixed;
-    bottom: 5%;
-    right: 5%;
+    bottom: 2rem;
+    right: 2rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;

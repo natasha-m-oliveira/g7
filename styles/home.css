@@ -357,7 +357,7 @@ p{
     /* background: black; */
     background: linear-gradient(var(--purple), var(--blue));
     border-radius: 0;
-    font-size: clamp(14px, 1.6rem, 2vw);
+    font-size: clamp(14px, 1.1rem, 2vw);
 }
 
 footer .first-line {
