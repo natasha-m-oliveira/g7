@@ -176,10 +176,13 @@ html {
 
 .container .anchor a {
     font-weight: 700;
-    font-size: clamp(14px, 2rem, 2vw);
+    font-size: clamp(16px, 2rem, 2vw);
 }
 
 @media (max-width: 60rem) {
+    html{
+        overflow-x: hidden;
+    }
     .content {
         width: 100%;
         margin: 0;
@@ -245,6 +248,6 @@ html {
     }
     .container .anchor #top-of-page {
         bottom: 1rem;
-        right: 1rem;
+        right: 0;
     }
 }

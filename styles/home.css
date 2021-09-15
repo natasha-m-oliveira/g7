@@ -21,6 +21,7 @@ main {
     background-repeat: no-repeat, repeat;
     /* background-attachment: local, scroll; */
     background-blend-mode:  screen;
+    border-radius: 0;
 }
 
 main .container {
@@ -466,7 +467,7 @@ footer .second-line a:hover {
         min-height: 30rem;
     }
     .about .description{
-        padding: 0;
+        padding: 0 0 2rem;
     }
     .container .team {
         margin: 2rem 0;
