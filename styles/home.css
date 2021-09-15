@@ -465,6 +465,9 @@ footer .second-line a:hover {
     .container .about {
         min-height: 30rem;
     }
+    .about .description{
+        padding: 0;
+    }
     .container .team {
         margin: 2rem 0;
         padding: 0;

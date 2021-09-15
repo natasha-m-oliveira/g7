@@ -28,7 +28,7 @@ body {
     background: var(--blue-dark);
 }
 
-body.menu-active{
+body.menu-active {
     overflow: hidden;
 }
 
@@ -174,7 +174,7 @@ html {
     border-radius: 50%;
 }
 
-.container .anchor a{
+.container .anchor a {
     font-weight: 700;
     font-size: clamp(14px, 2rem, 2vw);
 }
@@ -242,5 +242,9 @@ html {
     .content header .nav.active .btn-mobile .burger::after {
         transform: rotate(-135deg);
         top: -0.7rem;
+    }
+    .container .anchor #top-of-page {
+        bottom: 1rem;
+        right: 1rem;
     }
 }
