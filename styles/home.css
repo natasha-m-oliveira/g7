@@ -123,11 +123,41 @@ p{
     width: 100%;
 }
 
+/*Map*/
+
+.map {
+    width: 100%;
+}
+.map .title {
+    width: 100%;
+}
+
+.map img {
+    width: 100%;
+}
+.map .description{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.map .description .left, .right{
+    width: 50%;
+    display: block;
+    margin: auto;
+
+}
+
+.map .description .right p{
+    text-align: center;
+}
+
 /*Image Slide*/
 
 .container .box {
     position: relative;
     width: 100%;
+    padding: 0 4rem;
 }
 
 .container .box .title {
@@ -270,87 +300,6 @@ p{
     color: var(--green);
 }
 
-/*Coworking*/
-
-.coworking {
-    width: 50%;
-    text-align: left;
-}
-
-.container .coworking.title {
-    width: 100%;
-    margin-bottom: -10rem;
-}
-
-.container .coworking img {
-    width: 100%;
-}
-
-/*Form*/
-
-.contact {
-    border-radius: 1rem;
-    padding: 5rem 0;
-    width: 50%;
-}
-
-.container .contact h2 {
-    text-align: center;
-    padding: 0 4rem;
-}
-
-.container .contact input {
-    margin-bottom: 2rem;
-}
-
-.container .contact input.invalid {
-    border-bottom: .2rem solid var(--red);
-}
-
-.container .contact button {
-    width: 20rem;
-    margin: 2rem auto 0;
-    font-size: 2rem;
-    font-weight: bolder;
-}
-
-/*Toasts*/
-
-.container .notification {
-    height: 100vh;
-    position: absolute;
-    z-index: 1000;
-}
-
-.container .notification #toasts {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.container .notification .toast {
-    background-color: var(--white);
-    border-radius: 5px;
-    padding: 1rem 2rem;
-    margin: 0.5rem;
-    font-weight: 700;
-}
-
-.container .notification .toast.info {
-    color: var(--blue);
-}
-
-.container .notification .toast.success {
-    color: var(--green);
-}
-
-.container .notification .toast.error {
-    color: var(--red);
-}
-
 /*Footer*/
 
 .content footer {
@@ -441,6 +390,9 @@ footer .second-line a:hover {
 }
 
 @media (max-width: 60rem) {
+    main{
+        background-size: auto 50rem, auto;
+    }
     main .container {
         width: 100%;
         margin: 0;
@@ -451,6 +403,7 @@ footer .second-line a:hover {
     }
     .container h1 {
         font-size: 5rem;
+        line-height: 6rem;
     }
     .container h2 {
         font-size: 4rem;
@@ -459,6 +412,9 @@ footer .second-line a:hover {
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+    .container .outset{
+        min-height: 50rem;
     }
     .container .right.about {
         width: 100%;
