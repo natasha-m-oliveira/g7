@@ -19,6 +19,7 @@ main {
     justify-content: center;
     background: url("../images/outset.jpg"), var(--blue-dark);
     background-repeat: no-repeat, repeat;
+    background-size: 100%;
     /* background-attachment: local, scroll; */
     background-blend-mode: screen;
     border-radius: 0;
@@ -132,12 +133,12 @@ p {
 }
 
 .map.left {
-    width: 25%;
-    padding-right: 2rem;
+    width: 30%;
+    padding-right: 7rem;
 }
 
 .map.right{
-    width: 75%;
+    width: 70%;
 }
 
 .map.left .text-box{
