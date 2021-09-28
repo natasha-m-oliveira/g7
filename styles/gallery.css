@@ -2,27 +2,26 @@ main {
     background: var(--blue-dark), var(--blue-dark);
 }
 
-/*Card*/
+/*Gallery*/
 
 .card {
-    height: 35rem;
-    width: 35rem;
+    height: 32rem;
+    width: 32rem;
     margin: 1rem;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background: var(--blue-dark);
     transition: 0.4s;
 }
 
-.card.active {
+.card:hover {
+    -webkit-transform: scale(1.2);
+    height: auto;
     z-index: 1000;
-    display: none;
-    position: absolute;
-    width: 50rem;
-    height: 50rem;
 }
 
 .card .image {
     width: 100%;
-    height: 29rem;
+    height: 25rem;
 }
 
 .card .image img {
@@ -32,15 +31,17 @@ main {
     object-fit: cover;
 }
 
-.card .label{
-    margin: 1rem; 
+.card .label {
+    margin: 1rem;
 }
 
-.card .label a{
-    color: var(--grey);
-    cursor: pointer;
+.card .full-text{
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
 }
 
-.card .label .full-text{
-    display: none;
+.card:hover .full-text{
+    opacity: 1;
+    visibility: visible;
 }
