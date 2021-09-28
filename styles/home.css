@@ -202,8 +202,21 @@ p {
     left: 2rem;
 }
 
+.container .box #prev:after{
+    font-family: "Font Awesome 5 Free";
+    content: "\f104";
+    font-weight: 900;
+    font-size: 3rem;
+}
 .container .box #next {
     right: -4rem;
+}
+
+.container .box #next:after{
+    font-family: "Font Awesome 5 Free";
+    content: "\f105";
+    font-weight: 900;
+    font-size: 3rem;
 }
 
 .container .container-slide .slide {
@@ -354,8 +367,7 @@ footer .social-item {
 }
 
 footer .social-item:hover {
-    width: 3.1rem;
-    height: 3.1rem;
+    -webkit-transform: scale(1.2);
 }
 
 #instagram {
@@ -455,11 +467,9 @@ footer .second-line a:hover {
     }
     .container .box #prev {
         left: 0;
-        top: 60%;
     }
     .container .box #next {
-        right: -6rem;
-        top: 60%;
+        right: -5rem;
     }
     .container .container-slide .slide .right {
         height: auto;

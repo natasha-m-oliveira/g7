@@ -164,18 +164,30 @@ html {
 
 .container .anchor #top-of-page {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    padding: 2rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
     display: flex;
     align-items: center;
     background-color: var(--green);
     border-radius: 50%;
+    transition: 0.35s;
+}
+.container .anchor #top-of-page.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.container .anchor a {
+    color: var(--blue-dark);
 }
 
-.container .anchor a {
-    font-weight: 700;
-    font-size: clamp(16px, 2rem, 2vw);
+.container .anchor a:after{
+    font-family: "Font Awesome 5 Free";
+    content: "\f106";
+    font-weight: 900;
+    font-size: 3rem;
 }
 
 @media (max-width: 60rem) {

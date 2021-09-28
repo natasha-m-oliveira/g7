@@ -125,7 +125,7 @@ function autoplay() {
         toNext("click");
     }
 }
-//Autoplay
+// Autoplay
 
 setInterval(autoplay, 10000); //Slides mudam a cada 10 segundos
 
