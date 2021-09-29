@@ -22,6 +22,7 @@ main {
     background-size: 100%;
     /* background-attachment: local, scroll; */
     background-blend-mode: screen;
+    background-position: top center;
     border-radius: 0;
 }
 
