@@ -325,6 +325,48 @@ p {
     color: var(--green);
 }
 
+/*Events*/
+
+.events.title{
+    margin-bottom: 3rem;
+}
+.event {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.event .day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    width: 10rem;
+    height: 10rem;
+    margin-right: 2rem;
+}
+.event .day h3{
+    color: var(--green);
+    font-size: 6rem;
+}
+.event .details{
+    width: 15rem;
+}
+.event .details p{
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+.event .details .date h3{
+    font-size: 2rem;
+    line-height: 3rem;
+}
+.event .details .date{
+    margin-bottom: 1rem;
+    border-bottom: 0.2rem solid var(--green);
+    border-radius: 0;
+}
+
 /*Footer*/
 
 .content footer {
@@ -479,6 +521,9 @@ footer .second-line a:hover {
         margin: 2rem 0;
     }
     .container .contact {
+        margin-bottom: 2rem;
+    }
+    .container .events.title{
         margin-bottom: 2rem;
     }
 }
