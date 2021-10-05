@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if ( isset( $_SESSION["username"] ) ) {
+  $username = $_SESSION["username"];
+  session_write_close();
+
+} else {
+    session_unset();
+    session_write_close();
+    $url = "./login.php";
+    header("Location: $url");
+}
+?>
 <!DOCTYPE html>
 <html lang="PT_br">
 
@@ -25,15 +39,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--CSS-->
-    <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./styles/home.css">
+    <link rel="stylesheet" href="assets/styles/global.css">
+    <link rel="stylesheet" href="assets/styles/home.css">
 
     <!--FONTS-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!--ICON-->
-    <link rel="icon" href="./images/icon.svg">
+    <link rel="icon" href="assets/images/icon.svg">
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet" />
 
 </head>
@@ -41,7 +55,7 @@
 <body>
     <div class="content" id="outset">
         <header>
-            <img src="./images/light-logo.svg" alt="G7 LOGO" class="logo">
+            <img src="assets/images/light-logo.svg" alt="G7 LOGO" class="logo">
             <nav role="navigation" class="nav" data-nav>
                 <button aria-label="Abrir menu" class="btn-mobile" data-btn-mobile aria-haspopup="true"
                     aria-controls="menu" aria-expanded="false">Menu <span class="burger"></span></button>
@@ -51,7 +65,7 @@
                     <li><a href="#network" data-menu-item>REDE</a></li>
                     <li><a href="#team" data-menu-item>EQUIPE</a></li>
                     <li><a href="#actions" data-menu-item>AÇÕES</a></li>
-                    <li><a href="./gallery.html" data-menu-item>GALERIA</a></li>
+                    <li><a href="./gallery.php" data-menu-item>GALERIA</a></li>
                     <li><a href="" data-menu-item>CONTATO</a></li>
                 </ul>
             </nav>
@@ -80,7 +94,7 @@
                     </div>
                 </div>
                 <div class="right about">
-                    <img src="./images/group-people-working.jpg" alt="Grupo de executivos discutindo">
+                    <img src="assets/images/group-people-working.jpg" alt="Grupo de executivos discutindo">
                 </div>
                 <div class="space"></div>
                 <div class="map title" id="map">
@@ -96,7 +110,7 @@
                     </div>
                 </div>
                 <div class="map right">
-                    <img src="./images/cooperation-network-map.svg" alt="Mapa da rede de cooperação">
+                    <img src="assets/images/cooperation-network-map.svg" alt="Mapa da rede de cooperação">
                 </div>
                 <div class="space"></div>
                 <div class="box" id="network">
@@ -106,7 +120,7 @@
                     <div class="container-slide active">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/eniac-logo.svg" alt="ENIAC LOGO">
+                                <img src="assets/images/eniac-logo.svg" alt="ENIAC LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -125,7 +139,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/faesa-logo.svg" alt="FAESA LOGO">
+                                <img src="assets/images/faesa-logo.svg" alt="FAESA LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -144,7 +158,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/fateb-logo.svg" alt="FATEB LOGO">
+                                <img src="assets/images/fateb-logo.svg" alt="FATEB LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -163,7 +177,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/fecaf-logo.svg" alt="FECAF LOGO">
+                                <img src="assets/images/fecaf-logo.svg" alt="FECAF LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -180,7 +194,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/toledo-prudente-logo.svg" alt="TOLEDO PRUDENTE LOGO">
+                                <img src="assets/images/toledo-prudente-logo.svg" alt="TOLEDO PRUDENTE LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -198,7 +212,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/undb-logo.svg" alt="UNDB LOGO">
+                                <img src="assets/images/undb-logo.svg" alt="UNDB LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -222,7 +236,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/uniopet-logo.svg" alt="UNIOPET LOGO">
+                                <img src="assets/images/uniopet-logo.svg" alt="UNIOPET LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -239,7 +253,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/unis-logo.svg" alt="UNIS LOGO">
+                                <img src="assets/images/unis-logo.svg" alt="UNIS LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -261,7 +275,7 @@
                     <div class="container-slide">
                         <div class="slide">
                             <div class="left" data-image-slide>
-                                <img src="./images/unisuam-logo.svg" alt="UNISUAM LOGO">
+                                <img src="assets/images/unisuam-logo.svg" alt="UNISUAM LOGO">
                             </div>
                             <div class="right">
                                 <div class="text-box">
@@ -295,7 +309,7 @@
                     <h2 data-team-title>Conheça o time<br />de Alta Liderança</h2>
                 </div>
                 <div class="left team">
-                    <img src="./images/rebeca-murad.png" alt="Rebeca Murad">
+                    <img src="assets/images/rebeca-murad.png" alt="Rebeca Murad">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -304,7 +318,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/zelly-toledo.png" alt="Zelly Toledo">
+                    <img src="assets/images/zelly-toledo.png" alt="Zelly Toledo">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -313,7 +327,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/arapuan-netto.png" alt="Arapuan Netto">
+                    <img src="assets/images/arapuan-netto.png" alt="Arapuan Netto">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -322,7 +336,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/ruy-guerios.png" alt="Ruy Guérios">
+                    <img src="assets/images/ruy-guerios.png" alt="Ruy Guérios">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -331,7 +345,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/pedro-guerios.png" alt="Pedro Guérios">
+                    <img src="assets/images/pedro-guerios.png" alt="Pedro Guérios">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -340,7 +354,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/alexandre-nunes.png" alt="Alexandre Nunes">
+                    <img src="assets/images/alexandre-nunes.png" alt="Alexandre Nunes">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -349,7 +363,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/marcel-gama.png" alt="Marcel Gama">
+                    <img src="assets/images/marcel-gama.png" alt="Marcel Gama">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -358,7 +372,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/adriana-karam.png" alt="Adriana Karam">
+                    <img src="assets/images/adriana-karam.png" alt="Adriana Karam">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -367,7 +381,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/felipe-flausino.png" alt="Felipe Flausino">
+                    <img src="assets/images/felipe-flausino.png" alt="Felipe Flausino">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -376,7 +390,7 @@
                     </div>
                 </div>
                 <div class="left team">
-                    <img src="./images/paula-pontara.png" alt="Paula Pontara">
+                    <img src="assets/images/paula-pontara.png" alt="Paula Pontara">
                 </div>
                 <div class="right team text-box">
                     <div class="description">
@@ -506,7 +520,7 @@
         <footer>
             <div class="first-line">
                 <div class="address">
-                    <img src="./images/light-logo.svg" alt="G7 Logo">
+                    <img src="assets/images/light-logo.svg" alt="G7 Logo">
                 </div>
                 <div class="social-media">
                     <a href="https://www.instagram.com/cegru.lab/" target="_blank" class="social-item"
@@ -522,8 +536,8 @@
             </div>
         </footer>
     </div>
-    <script src="./scripts/global.js"></script>
-    <script src="./scripts/slides.js"></script>
+    <script src="assets/scripts/global.js"></script>
+    <script src="assets/scripts/slides.js"></script>
 </body>
 
 </html>
