@@ -329,6 +329,7 @@ p {
 
 .events.title{
     margin-bottom: 3rem;
+    width: 100%;
 }
 .event {
     margin: 2rem;
