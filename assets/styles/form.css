@@ -28,38 +28,58 @@ main .container {
     min-height: 100vh;
 }
 
-/*Login Form*/
-.login-form {
+/*Form*/
+
+.form {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    margin: 2rem 0;
 }
 
-.login-form form{
-    width: 50%;
+.form form {
+    width: min(50%, 45.2rem);
     padding: 4rem 3rem;
     background: rgba(0, 24, 87, 0.75);
 }
 
-.login-form form h1, input{
+.form form h1, input {
     margin-bottom: 2rem;
 }
 
-.login-form form p{
+.form form p {
     color: var(--grey);
     text-align: center;
 }
-.login-form form a{
+
+.form form a {
     color: var(--white);
 }
 
-.login-form form input[type=submit] {
+.form form input[type=submit] {
     width: 80%;
     margin: 2rem auto;
     text-transform: uppercase;
     font-weight: 700;
     color: var(--white);
+}
+
+/*Error Messages*/
+
+.toast {
+    text-align: center;
+}
+
+.invalid {
+    border-bottom: .2rem solid var(--red);
+}
+
+.error-msg {
+    color: var(--red);
+}
+
+.success-msg {
+    color: var(--green);
 }
 
 /*Footer*/
@@ -159,7 +179,7 @@ footer .second-line a:hover {
         margin: 0;
         padding: 0 2rem;
     }
-    .login-form form{
+    .form form {
         width: 100%;
     }
 }

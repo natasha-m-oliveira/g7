@@ -15,7 +15,6 @@ html {
     --red: #F00038;
     --yellow: #FFD400;
     --green: #94D21D;
-    --blue-light: rgba(0, 24, 87, 0.75);
     --blue-dark: #001857;
     /*1rem = 16px (User agent) = 100% (User agent)*/
     font-size: 62.5%;

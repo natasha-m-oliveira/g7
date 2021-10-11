@@ -121,7 +121,7 @@ class Member
             $url = "./";
             header("Location: $url");
         } else if ($loginPassword == 0) {
-            $loginStatus = "A senha ou nome de usuário são invélidos.";
+            $loginStatus = "Nome de usuário ou senha inválido.";
             return $loginStatus;
         }
     }

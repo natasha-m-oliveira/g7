@@ -11,7 +11,7 @@ if ( ! empty( $_POST["login-btn"] ) ) {
 <html lang="PT_br">
 
 <head>
-    <title>Galeria | G7</title>
+    <title>Login | G7</title>
 
     <!--Search Engines-->
     <meta name="description" content="Conheça o G7">
@@ -35,10 +35,7 @@ if ( ! empty( $_POST["login-btn"] ) ) {
 
     <!--CSS-->
     <link rel="stylesheet" href="assets/styles/global.css">
-    <link rel="stylesheet" href="assets/styles/login.css">
-
-    <!--JS-->
-    <script src="assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/styles/form.css">
 
     <!--FONTS-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -54,16 +51,18 @@ if ( ! empty( $_POST["login-btn"] ) ) {
     <div class="content">
         <main>
             <div class="container">
-                <div class="login-form">
+                <div class="form">
                     <form name="login" action="" method="post" onsubmit="return loginValidation()">
                         <h1>Entrar</h1>
-                        <label for="username">Usuário: <span class="required error" id="username-info"> *</span></label>
-                        <input type="text" name="username" id="username" inputmode="verbatim" required data-type="user">
-                        <label for="login-password">Senha: <span class="required error" id="login-password-info"> *</span></label>
-                        <input type="password" name="login-password" id="login-password" inputmode="verbatim" required data-type="password">
-                        <?php if ( !empty( $loginResult ) ) { ?>
-                            <div class="error-msg"><?php echo $loginResult; ?></div>
-                        <?php } ?>
+                        <label for="username">Usuário: *</label>
+                        <input type="text" name="username" id="username" inputmode="verbatim" required>
+                        <label for="login-password">Senha:  *</label>
+                        <input type="password" name="login-password" id="login-password" inputmode="verbatim" required>
+                        <div class="toast">
+                            <?php if (!empty($loginResult)) { ?>
+                                <div class="server-response error-msg"><?php echo $loginResult; ?></div>
+                            <?php } ?>
+                        </div>
                         <p>Você é aluno? <a href="#">Clique aqui</a></p>
                         <input type="submit" class="button" name="login-btn" id="login-btn" value="Entrar">
                     </form>
@@ -89,31 +88,7 @@ if ( ! empty( $_POST["login-btn"] ) ) {
             </div>
         </footer>
     </div>
-    <script>
-        function loginValidation() {		
-            var valid = true;
-            $("#user").removeClass("error-field");
-            $("#password").removeClass("error-field");
-            var UserName = $("#user").val();
-            var Password = $('#login-password').val();
-            $("#username-info").html("").hide();
-            if (UserName.trim() == "") {
-                $("#username-info").html(" *").css("color", "#ee0000").show();
-                $("#username").addClass("error-field");
-                valid = false;
-            }
-            if (Password.trim() == "") {
-                $("#login-password-info").html(" *").css("color", "#ee0000").show();
-                $("#login-password").addClass("error-field");
-                valid = false;
-            }
-            if (valid == false) {
-                $('.error-field').first().focus();
-                valid = false;
-            }
-            return valid;
-        }
-    </script>
+    <script src="assets/scripts/validation.js"></script>
 </body>
 
 </html>
