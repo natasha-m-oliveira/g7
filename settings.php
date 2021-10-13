@@ -74,9 +74,6 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4)
                         <h1 data-typed-words><?php echo $username; ?></h1>
                         <h1 data-typed-cursor>|</h1>
                     </div>
-                    <div class="action">
-                        <div class="button" data-open-pop-my-account>ALTERAR SENHA</div>
-                    </div>
                 </div>
             </div>
         </main>

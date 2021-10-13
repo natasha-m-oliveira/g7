@@ -1,7 +1,6 @@
 <?php
 use PhpLogin\Member;
-
-if ( ! empty( $_POST["signup-btn"] ) ) {
+if (!empty( $_POST["signup-btn"])) {
 	require_once __DIR__ . '/Model/Member.php';	
 	$member = new Member();
 	$registrationResponse = $member->registerMember();
@@ -52,12 +51,12 @@ if ( ! empty( $_POST["signup-btn"] ) ) {
         <main>
             <div class="container">
                 <div class="form">
-                    <form name="sign-up" action="" method="post" onsubmit="return signupValidation()">
+                    <form name="sign-up" action="" method="post" onsubmit="return signupValidation();">
                         <h1>Cadastre-se</h1>
                         <label for="username">Usuário: *</label>
                         <input type="text" name="username" id="username" inputmode="verbatim" required>
                         <label for="email">E-mail: *</label>
-                        <input type="email" name="email" id="email" inputmode="verbatim" required>
+                        <input type="text" name="email" id="email" inputmode="verbatim" required>
                         <label for="signup-password">Senha:  *</label>
                         <input type="password" name="signup-password" id="signup-password" inputmode="verbatim" required>
                         <label for="confirm-password">Confirme a senha:  *</label>

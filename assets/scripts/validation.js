@@ -1,4 +1,5 @@
 const inputs = document.querySelectorAll("input");
+const signupButton = document.querySelectorAll("#signup-btn");
 
 function inputRequired(input, valid) {
     if (!valid) {
@@ -30,7 +31,7 @@ function signupValidation() {
     let message;
     const username = document.querySelector("#username");
     const email = document.querySelector("#email");
-    const password = document.querySelector("#signup-passwords");
+    const password = document.querySelector("#signup-password");
     const confirmPassword = document.querySelector("#confirm-password");
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -54,17 +55,18 @@ function signupValidation() {
     if (confirmPassword.value == "") {
         valid = false;
         inputRequired(confirmPassword, valid);
-    } else if (password.value !== confirmPassword.value) {
+    } else if (password.value != confirmPassword.value) {
         message = "Digite a senha corretamente.";
         valid = false;
         createNotification(message, "error");
         inputRequired(password, valid);
         inputRequired(confirmPassword, valid);
     }
-    if (valid === true) {
+    if(valid === true){
         return true;
     }
     return false;
+    
 }
 
 function loginValidation() {

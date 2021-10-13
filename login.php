@@ -63,7 +63,7 @@ if ( ! empty( $_POST["login-btn"] ) ) {
                                 <div class="server-response error-msg"><?php echo $loginResult; ?></div>
                             <?php } ?>
                         </div>
-                        <p>Você é aluno? <a href="#">Clique aqui</a></p>
+                        <p>Não possui uma conta? <a href="signup.php">Clique aqui</a></p>
                         <input type="submit" class="button" name="login-btn" id="login-btn" value="Entrar">
                     </form>
                 </div>
