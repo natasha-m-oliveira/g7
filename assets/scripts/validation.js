@@ -1,15 +1,10 @@
 const inputs = document.querySelectorAll("input");
-const signupButton = document.querySelector("#signup-btn");
-const loginButton = document.querySelector("#login-btn");
-let ready = false;
 
 function inputRequired(input, valid) {
-    if (ready) {
-        if (input.value == "" || !valid) {
-            input.classList.add("invalid");
-        } else {
-            input.classList.remove("invalid");
-        }
+    if (!valid) {
+        input.classList.add("invalid");
+    } else {
+        input.classList.remove("invalid");
     }
 }
 
@@ -29,48 +24,50 @@ function createNotification(message, type) {
         notif.remove();
     }, 3000);
 }
-if (signupButton !== null) {
-    signupButton.addEventListener("click", () => {
-        let valid = true;
-        let message;
-        const username = document.querySelector("#username");
-        const email = document.querySelector("#email");
-        const password = document.querySelector("#signup-passwords");
-        const confirmPassword = document.querySelector("#confirm-password");
-        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-        if (username.value == "") {
-            valid = false;
-            inputRequired(username, valid);
-        }
-        if (email.value == "") {
-            valid = false;
-            inputRequired(email, valid);
-        } else if (!(emailRegex.test(email.value))) {
-            message = "E-mail inválido.";
-            valid = false;
-            createNotification(message, "error");
-            inputRequired(email, valid);
-        }
-        if (password.value == "") {
-            valid = false;
-            inputRequired(password, valid);
-        }
-        if (confirmPassword.value == "") {
-            valid = false;
-            inputRequired(confirmPassword, valid);
-        } else if (password.value != confirmPassword.value) {
-            message = "Digite a senha corretamente.";
-            valid = false;
-            createNotification(message, "error");
-            inputRequired(password, valid);
-            inputRequired(confirmPassword, valid);
-        }
-    });
+function signupValidation() {
+    let valid = true;
+    let message;
+    const username = document.querySelector("#username");
+    const email = document.querySelector("#email");
+    const password = document.querySelector("#signup-passwords");
+    const confirmPassword = document.querySelector("#confirm-password");
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+    if (username.value == "") {
+        valid = false;
+        inputRequired(username, valid);
+    }
+    if (email.value == "") {
+        valid = false;
+        inputRequired(email, valid);
+    } else if (!(emailRegex.test(email.value))) {
+        message = "E-mail inválido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(email, valid);
+    }
+    if (password.value == "") {
+        valid = false;
+        inputRequired(password, valid);
+    }
+    if (confirmPassword.value == "") {
+        valid = false;
+        inputRequired(confirmPassword, valid);
+    } else if (password.value !== confirmPassword.value) {
+        message = "Digite a senha corretamente.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(password, valid);
+        inputRequired(confirmPassword, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
 }
 
-if (loginButton !== null) {
-loginButton.addEventListener("click", () => {
+function loginValidation() {
     let valid = true;
     const username = document.querySelector("#username");
     const password = document.querySelector("#login-password");
@@ -82,23 +79,66 @@ loginButton.addEventListener("click", () => {
         valid = false;
         inputRequired(password, valid);
     }
-});
+    if (valid === true) {
+        return true;
+    }
+    return false;
 }
 
-inputs.forEach(input => {
-    input.addEventListener("blur", inputRequired(input, true));
-});
-
-function signupValidation(valid) {
-    return valid;
+function changePasswordValidation() {
+    let valid = true;
+    let message;
+    const currentPassword = document.querySelector("#current-password");
+    const newPassword = document.querySelector("#new-password");
+    const confirmNewPassword = document.querySelector("#confirm-new-password");
+    if (currentPassword.value == "") {
+        valid = false;
+        inputRequired(currentPassword, valid);
+    }
+    if (newPassword.value == "") {
+        valid = false;
+        inputRequired(newPassword, valid);
+    } else if (currentPassword.value == newPassword.value) {
+        message = "A nova senha não pode ser igual a anterior.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(currentPassword, valid);
+        inputRequired(newPassword, valid);
+    }
+    if (confirmNewPassword.value == "") {
+        valid = false;
+        inputRequired(confirmNewPassword, valid);
+    } else if (newPassword.value != confirmNewPassword.value) {
+        message = "As senhas não correspondem.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(newPassword, valid);
+        inputRequired(confirmNewPassword, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
 }
 
-function loginValidation(valid) {
-    return valid;
+if (inputs[0] !== null) {
+    inputs.forEach(input => {
+        input.addEventListener("blur", () => {
+            if (input.value == "") {
+                inputRequired(input, false);
+            } else {
+                inputRequired(input, true);
+            }
+        });
+    });
 }
 
 window.onload = () => {
-    ready = true;
+    if (inputs[0] !== null) {
+        inputs.forEach(input => {
+            input.classList.remove("invalid");
+        });
+    }
     const toast = document.querySelector(".toast");
     const notif = toast.querySelector(".server-response");
     if (notif !== null) {

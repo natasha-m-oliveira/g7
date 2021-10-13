@@ -94,9 +94,9 @@ function touchEnd(event) {
     elapsedTime = new Date().getTime() - startTime; // obter tempo decorrido
     // verifique se o tempo decorrido está dentro do especificado, distância horizontal percorrida> = limite e distância vertical percorrida <= 100
     var slideDirection = "";
-    if (elapsedTime <= allowedTime){
-        if (Math.abs(dist) >= threshold && Math.abs(touchobj.pageY - startY) <= 100){
-            slideDirection = (dist < 0)? "right" : "left";
+    if (elapsedTime <= allowedTime) {
+        if (Math.abs(dist) >= threshold && Math.abs(touchobj.pageY - startY) <= 100) {
+            slideDirection = (dist < 0) ? "right" : "left";
         }
     }
     isMove = false;
@@ -104,11 +104,11 @@ function touchEnd(event) {
     event.preventDefault();
 }
 
-function mouveOver(){
+function mouveOver() {
     isMove = true;
 }
 
-function mouseOut(){
+function mouseOut() {
     isMove = false;
 }
 
@@ -121,7 +121,7 @@ function controllerSlider(slideDirection) {
 }
 
 function autoplay() {
-    if(!isMove){
+    if (!isMove) {
         toNext("click");
     }
 }

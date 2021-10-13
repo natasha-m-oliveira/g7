@@ -1,0 +1,35 @@
+main {
+    background: var(--blue-dark), var(--blue-dark);
+}
+
+.welcome {
+    width: 100%;
+    min-height: 90vh;
+}
+
+.welcome .title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.welcome h1 {
+    font-size: 6rem;
+}
+
+.welcome h1:nth-child(2) {
+    color: var(--green);
+    opacity: 0.5;
+}
+
+.welcome .action {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome .action .button {
+    width: 20rem;
+    font-weight: 700;
+}

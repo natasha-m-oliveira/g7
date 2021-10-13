@@ -1,17 +1,28 @@
 <?php
 use PhpLogin\Member;
+session_start();
 
-if ( ! empty( $_POST["login-btn"] ) ) {
-	require_once __DIR__ . '/Model/Member.php';	
-	$member = new Member();
-	$loginResult = $member->loginMember();
+if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4) {
+    $username = $_SESSION["username"];
+    session_write_close();
+    if (!empty( $_POST["change-my-account-btn"])) {
+        require_once __DIR__ . '/Model/Member.php';	
+        $member = new Member();
+        $changeMyAccountResponse = $member->changeMyPassWord();
+    }
+    
+} else {
+    session_unset();
+    session_write_close();
+    $url = "./login.php";
+    header("Location: $url");
 }
 ?>
 <!DOCTYPE html>
 <html lang="PT_br">
 
 <head>
-    <title>Login | G7</title>
+    <title>Configurações | G7</title>
 
     <!--Search Engines-->
     <meta name="description" content="Conheça o G7">
@@ -35,7 +46,8 @@ if ( ! empty( $_POST["login-btn"] ) ) {
 
     <!--CSS-->
     <link rel="stylesheet" href="assets/styles/global.css">
-    <link rel="stylesheet" href="assets/styles/form.css">
+    <link rel="stylesheet" href="assets/styles/home.css">
+    <link rel="stylesheet" href="assets/styles/settings.css">
 
     <!--FONTS-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -48,26 +60,26 @@ if ( ! empty( $_POST["login-btn"] ) ) {
 </head>
 
 <body>
-    <div class="content">
+    <div class="content" id="outset">
+        <header>
+            <a href="./index.php"><img src="assets/images/light-logo.svg" alt="G7 LOGO" class="logo"></a>
+        </header>
         <main>
             <div class="container">
-                <div class="form">
-                    <form name="login" action="" method="post" onsubmit="return loginValidation()">
-                        <h1>Entrar</h1>
-                        <label for="username">Usuário: *</label>
-                        <input type="text" name="username" id="username" inputmode="verbatim" required>
-                        <label for="login-password">Senha:  *</label>
-                        <input type="password" name="login-password" id="login-password" inputmode="verbatim" required>
-                        <div class="toast">
-                            <?php if (!empty($loginResult)) { ?>
-                                <div class="server-response error-msg"><?php echo $loginResult; ?></div>
-                            <?php } ?>
-                        </div>
-                        <p>Você é aluno? <a href="#">Clique aqui</a></p>
-                        <input type="submit" class="button" name="login-btn" id="login-btn" value="Entrar">
-                    </form>
+                <div class="anchor">
+                    <a href="#" id="top-of-page" class="button" data-anchor></a>
+                </div>
+                <div class="welcome">
+                    <div class="title">
+                        <h1 data-typed-words><?php echo $username; ?></h1>
+                        <h1 data-typed-cursor>|</h1>
+                    </div>
+                    <div class="action">
+                        <div class="button" data-open-pop-my-account>ALTERAR SENHA</div>
+                    </div>
                 </div>
             </div>
         </main>
         <script src="assets/scripts/validation.js"></script>
+        <script src="assets/scripts/settings.js"></script>
         <?php include("includes/footer.php");?>

@@ -108,6 +108,28 @@ class DataSource
     }
 
     /**
+     * To update database register
+     *
+     * @param string $query
+     * @param string $paramType
+     * @param array $paramArray
+     * @return array
+     */
+    public function update($query, $paramType = "", $paramArray = array())
+    {
+        $stmt = $this->conn->prepare($query);
+
+        if (! empty($paramType) && ! empty($paramArray)) {
+
+            $this->bindQueryParams($stmt, $paramType, $paramArray);
+        }
+        $stmt->execute();
+        $resultUpdade = $stmt->affected_rows;
+
+        return $resultUpdade;
+    }
+
+    /**
      * To insert
      *
      * @param string $query
@@ -174,7 +196,7 @@ class DataSource
     public function getRecordCount($query, $paramType = "", $paramArray = array())
     {
         $stmt = $this->conn->prepare($query);
-        if (! empty($paramType) && ! empty($paramArray)) {
+        if (!empty($paramType) && !empty($paramArray)) {
 
             $this->bindQueryParams($stmt, $paramType, $paramArray);
         }
