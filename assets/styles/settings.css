@@ -4,7 +4,6 @@ main {
 
 .welcome {
     width: 100%;
-    min-height: 90vh;
 }
 
 .welcome .title {
@@ -32,4 +31,57 @@ main {
 .welcome .action .button {
     width: 20rem;
     font-weight: 700;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-size: clamp(14px, 1.6rem, 2vw);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    border-bottom: 0.2rem solid var(--blue-dark);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    text-align: left;
+    font-weight: 700;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 1.2rem 1.5rem;
+    border-radius: 0;
+}
+
+.styled-table tbody tr {
+    border-bottom: 0.2rem solid var(--blue-dark);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--white);
+    transition: 0.5s;
+}
+
+.styled-table tbody tr:hover{
+    transform: scale(1.06);
+}
+
+.styled-table tbody tr .far{
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.styled-table tbody tr .far:hover:nth-child(1){
+    color: var(--green);
+}
+
+.styled-table tbody tr .far:hover:nth-child(2){
+    color: var(--red);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 0.2rem solid var(--white);
 }

@@ -100,6 +100,20 @@ class Member
         return $memberRecord;
     }
 
+    public function registerLastAcess($username)
+    {
+        $dateTimeZone = new \DateTime(null, new \DateTimeZone('America/Sao_Paulo')); 
+        $last_access = $dateTimeZone->format('Y-m-d H:i:s');
+        $query = 'UPDATE member SET last_access = ? WHERE username = ?';
+        $paramType = 'ss';
+        $paramValue = array(
+            $last_access,
+            $username
+        );
+        $updateLastAcess = $this->ds->update($query, $paramType, $paramValue);
+        return $updateLastAcess;
+    }
+
     public function loginMember()
     {
         $memberRecord = $this->getMember($_POST["username"]);
@@ -117,12 +131,15 @@ class Member
             $loginPassword = 0;
         }
         if ($loginPassword == 1) {
-            session_start();
-            $_SESSION["username"] = $memberRecord[0]["username"];
-            $_SESSION["id_access_profile"] = $memberRecord[0]["id_access_profile"];
-            session_write_close();
-            $url = "./";
-            header("Location: $url");
+            $last_access = $this->registerLastAcess($_POST["username"]);
+            if (!empty($last_access)) {
+                session_start();
+                $_SESSION["username"] = $memberRecord[0]["username"];
+                $_SESSION["id_access_profile"] = $memberRecord[0]["id_access_profile"];
+                session_write_close();
+                $url = "./";
+                header("Location: $url");
+            }
         } else if ($loginPassword == 0) {
             $loginStatus = "Nome de usuário ou senha inválido.";
             return $loginStatus;

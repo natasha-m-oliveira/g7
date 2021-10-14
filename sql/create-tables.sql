@@ -39,6 +39,7 @@ CREATE TABLE `member` (
   `password` varchar(200) NOT NULL,
   `email` varchar(255) NOT NULL,
   `id_access_profile` int(11) NOT NULL,
+  `last_access` timestamp,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_at`timestamp ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
