@@ -1,16 +1,14 @@
 <?php
+require __DIR__ . "/vendor/autoload.php";
 use PhpLogin\Member;
 session_start();
 
 if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4) {
     $username = $_SESSION["username"];
     session_write_close();
-    if (!empty( $_POST["change-my-account-btn"])) {
-        require_once __DIR__ . '/Model/Member.php';	
-        $member = new Member();
-        $changeMyAccountResponse = $member->changeMyPassWord();
-    }
-    
+    require_once __DIR__ . '/Model/Member.php';	
+    $member = new Member();
+    $users = $member->listMember();
 } else {
     session_unset();
     session_write_close();
@@ -72,94 +70,8 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4)
                         <h1 data-typed-cursor>|</h1>
                     </div>
                 </div>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Perfil de Acesso</th>
-                            <th>Último Aceesso</th>
-                            <th>Criado em</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Admin</td>
-                            <td>admin@eniac.edu.br</td>
-                            <td>Administrador</td>
-                            <td>13-10-2021 22:15:45</td>
-                            <td>13-10-2021 22:02:35</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Natasha M Oliveira</td>
-                            <td>natasha.oliveira@eniac.edu.br</td>
-                            <td>Visualizador</td>
-                            <td>11-10-2021 02:28:13</td>
-                            <td>11-10-2021 02:30:57</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Admin</td>
-                            <td>admin@eniac.edu.br</td>
-                            <td>Administrador</td>
-                            <td>13-10-2021 22:15:45</td>
-                            <td>13-10-2021 22:02:35</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Natasha M Oliveira</td>
-                            <td>natasha.oliveira@eniac.edu.br</td>
-                            <td>Visualizador</td>
-                            <td>11-10-2021 02:28:13</td>
-                            <td>11-10-2021 02:30:57</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Admin</td>
-                            <td>admin@eniac.edu.br</td>
-                            <td>Administrador</td>
-                            <td>13-10-2021 22:15:45</td>
-                            <td>13-10-2021 22:02:35</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Natasha M Oliveira</td>
-                            <td>natasha.oliveira@eniac.edu.br</td>
-                            <td>Visualizador</td>
-                            <td>11-10-2021 02:28:13</td>
-                            <td>11-10-2021 02:30:57</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Admin</td>
-                            <td>admin@eniac.edu.br</td>
-                            <td>Administrador</td>
-                            <td>13-10-2021 22:15:45</td>
-                            <td>13-10-2021 22:02:35</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Natasha M Oliveira</td>
-                            <td>natasha.oliveira@eniac.edu.br</td>
-                            <td>Visualizador</td>
-                            <td>11-10-2021 02:28:13</td>
-                            <td>11-10-2021 02:30:57</td>
-                            <td><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php include __DIR__ . "/includes/listing.php";?>
             </div>
         </main>
         <script src="assets/scripts/settings.js"></script>
-        <?php include("includes/footer.php");?>
+        <?php include __DIR__ . "/includes/footer.php";?>

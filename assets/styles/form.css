@@ -43,6 +43,10 @@ main .container {
     background: rgba(0, 24, 87, 0.75);
 }
 
+.form form.delete {
+    width: 100%;
+}
+
 .form form h1, input {
     margin-bottom: 2rem;
 }
@@ -62,6 +66,32 @@ main .container {
     text-transform: uppercase;
     font-weight: 700;
     color: var(--white);
+}
+
+.form form .action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form form .action .button {
+    width: 45%;
+    margin: 0;
+    border-radius: 0.8rem;
+}
+
+.form form .action .go-back {
+    background: var(--grey);
+}
+
+.form form .action .delete {
+    background: var(--red);
+    border: none;
+}
+
+.form form p{
+    margin-bottom: 2rem;
 }
 
 /*Error Messages*/

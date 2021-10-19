@@ -80,4 +80,4 @@ if (!empty( $_POST["signup-btn"])) {
             </div>
         </main>
         <script src="assets/scripts/validation.js"></script>
-        <?php include("includes/footer.php");?>
+        <?php include __DIR__ . "/includes/footer.php";?>

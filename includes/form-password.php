@@ -6,14 +6,14 @@ if (!empty( $_POST["change-my-account-btn"])) {
     $changeMyAccountResponse = $member->changeMyPassWord();
 }
 if (!empty($changeMyAccountResponse["status"])) {?>
-    <div class="pop-up" data-my-account>
+    <div class="pop-up" data-form-pop-up>
 <?php }else{ ?>
-    <div class="pop-up sr-only" data-my-account>
+    <div class="pop-up sr-only" data-form-pop-up>
 <?php } ?>
     <form name="change-password" action="" id="change-password" method="post" onsubmit="return changePasswordValidation()">
         <div class="action">
             <h1>Alterar Senha</h1>
-            <i class="fas fa-times" data-close-pop-my-account></i>
+            <i class="fas fa-times" data-close-pop-up></i>
         </div>
         <input type="text" name="username" id="username" class="sr-only" value="<?php echo $username; ?>" readonly>
         <label for="current-password">Senha: *</label>
@@ -41,5 +41,5 @@ if (!empty($changeMyAccountResponse["status"])) {?>
         <input type="submit" class="button" name="change-my-account-btn" id="change-my-account-btn" value="Alterar">
     </form>
 </div>
-</div>
 <script src="assets/scripts/validation.js"></script>
+<script src="assets/scripts/pop-up.js"></script>

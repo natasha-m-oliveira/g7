@@ -72,7 +72,7 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] > 1)
             <div class="dropdown">
                 <div class="dropbtn button" data-menu-config><i class="fas fa-cogs"></i></div>
                 <div class="dropdown-content">
-                    <a data-open-pop-my-account><i class="fas fa-user-cog"></i></a>
+                    <a data-open-pop-up><i class="fas fa-user-cog"></i></a>
                     <a href="./signup.php"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>

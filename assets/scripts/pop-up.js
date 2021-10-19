@@ -1,12 +1,16 @@
-const openPopMyAccount = document.querySelector("[data-open-pop-my-account]");
-const closePopMyAccount = document.querySelector("[data-close-pop-my-account]");
+const openPopMyAccount = document.querySelector("[data-open-pop-up]");
+const closePopMyAccount = document.querySelector("[data-close-pop-up]");
 
-openPopMyAccount.addEventListener("click", () => {
-    const popupMyAccount = document.querySelector("[data-my-account]");
-    popupMyAccount.classList.remove("sr-only");
-});
+if (openPopMyAccount !== null) {
+    openPopMyAccount.addEventListener("click", () => {
+        const popupMyAccount = document.querySelector("[data-form-pop-up]");
+        popupMyAccount.classList.remove("sr-only");
+    });
+}
 
-closePopMyAccount.addEventListener("click", () => {
-    const popupMyAccount = document.querySelector("[data-my-account]");
-    popupMyAccount.classList.add("sr-only");
-});
+if (closePopMyAccount !== null) {
+    closePopMyAccount.addEventListener("click", () => {
+        const popupMyAccount = document.querySelector("[data-form-pop-up]");
+        popupMyAccount.classList.add("sr-only");
+    });
+}

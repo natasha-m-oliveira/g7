@@ -123,6 +123,43 @@ function changePasswordValidation() {
     return false;
 }
 
+function updateUser(){
+    let valid = true;
+    let message;
+    const username = document.querySelector("#username");
+    const email = document.querySelector("#email");
+    const password = document.querySelector("#update-password");
+    const acessProfile = document.querySelector("#acess-profile");
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (username.value == "") {
+        valid = false;
+        inputRequired(username, valid);
+    }
+    if (email.value == "") {
+        valid = false;
+        inputRequired(email, valid);
+    } else if (!(emailRegex.test(email.value))) {
+        message = "E-mail inválido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(email, valid);
+    }
+    if (password.value == "") {
+        valid = false;
+        inputRequired(password, valid);
+    }
+    if (acessProfile.value == "0") {
+        message = "Selecione o perfil de acesso.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(acessProfile, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
+}
+
 if (inputs[0] !== null) {
     inputs.forEach(input => {
         input.addEventListener("blur", () => {

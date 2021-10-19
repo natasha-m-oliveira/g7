@@ -91,13 +91,24 @@ class Member
 
     public function getMember($username)
     {
-        $query = 'SELECT * FROM member where username = ?';
+        $query = 'SELECT * FROM member WHERE username = ?';
         $paramType = 's';
         $paramValue = array(
             $username
         );
         $memberRecord = $this->ds->select($query, $paramType, $paramValue);
         return $memberRecord;
+    }
+
+    public function getMemberById($id)
+    {
+        $query = 'SELECT * FROM member WHERE id = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $id
+        );
+        $memberRecordById = $this->ds->select($query, $paramType, $paramValue);
+        return $memberRecordById;
     }
 
     public function registerLastAcess($username)
@@ -146,13 +157,31 @@ class Member
         }
     }
 
-    public function updateMember($username, $newPassword)
+    public function updatePassword($username, $newPassword)
     {
         $query = 'UPDATE member SET password = ? WHERE username = ?';
         $paramType = 'ss';
         $paramValue = array(
             $newPassword,
             $username
+        );
+        $updatePasswordRecord = $this->ds->update($query, $paramType, $paramValue);
+        if (!empty($updatePasswordRecord)) {
+            $updatePasswordRecord = 1;
+        }else{
+            $updatePasswordRecord = 0;
+        }
+        return $updatePasswordRecord;
+    }
+
+    public function updateMember($email, $acessProfile, $id)
+    {
+        $query = 'UPDATE member SET email = ?, id_access_profile = ? WHERE id = ?';
+        $paramType = 'sii';
+        $paramValue = array(
+            $email,
+            $acessProfile,
+            $id
         );
         $updateMemberRecord = $this->ds->update($query, $paramType, $paramValue);
         if (!empty($updateMemberRecord)) {
@@ -163,7 +192,7 @@ class Member
         return $updateMemberRecord;
     }
 
-    public function changeMyPassWord()
+    public function changeMyPassword()
     {
         $checkMember = $this->getMember($_POST["username"]);
         $currentPassword = 0;
@@ -175,7 +204,7 @@ class Member
             $currentPassword = 0;
             if (password_verify($password, $hashedPassword)) {
                 $hashedNewPassword = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
-                $currentPassword = $this->updateMember($_POST["username"], $hashedNewPassword);
+                $currentPassword = $this->updatePassword($_POST["username"], $hashedNewPassword);
             }
         } else {
             $currentPassword = 0;
@@ -192,5 +221,50 @@ class Member
             );
         }
         return $response;
+    }
+
+    public function changeProfile()
+    {
+        $checkMember = $this->getMember($_POST["username"]);
+        $id = $_POST["user-id"];
+        $email = $_POST["email"];
+        $acessProfile = $_POST["acess-profile"];
+        $resultUpdate = 0;
+        if (!empty($checkMember)) {
+            if (!empty($_POST["update-password"]) || $_POST["update-password"] !== "senhateste123") {
+                $hashedNewPassword = password_hash($_POST["update-password"], PASSWORD_DEFAULT);
+                $resultUpdate = $this->updatePassword($_POST["username"], $hashedNewPassword);
+            }
+            if($email !== $checkMember[0]["email"] || $acessProfile !== $checkMember[0]["id_access_profile"]){
+                $fields = 'email = '.$email.', id_access_profile = '.$acessProfile;
+                $resultUpdate = updateMember($email, $acessProfile, $id);
+            }
+        } else {
+            $resultUpdate = 0;
+        }
+        if ($resultUpdate == 1) {
+            $response = array(
+                "status" => "success",
+                "message" => "Usuário atualizado com sucesso."
+            );
+        } else if ($resultUpdate == 0) {
+            $response = array(
+                "status" => "error",
+                "message" => "Ops, algo deu errado."
+            );
+        }
+        return $response;
+    }
+
+    public function listMember($where = null, $order = null, $limit = null)
+    {
+        $fields = 'a.id, a.username, a.email, b.access_profile, a.last_access, a.create_at';
+        $where = strlen($where) ? 'WHERE '.$where : '';
+        $order = strlen($order) ? 'ORDER BY '.$order : '';
+        $limit = strlen($limit) ? 'LIMIT '.$limit : '';
+        $query = 'SELECT '.$fields.' FROM member as a INNER JOIN access_profile AS b ON a.id_access_profile = b.id'.$where.' '.$order.' '.$limit;
+        $resultMembers = $this->ds->select($query);
+        
+        return $resultMembers;
     }
 }

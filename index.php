@@ -1,4 +1,4 @@
-<?php include("includes/header.php");?>
+<?php include __DIR__ . "/includes/header.php";?>
 <main>
     <div class="container">
         <div class="anchor">
@@ -446,7 +446,6 @@
         </div>
     </div>
 </main>
-<?php include("includes/pop-up.php");?>
+<?php include __DIR__ . "/includes/form-password.php";?>
 <script src="assets/scripts/slides.js"></script>
-<script src="assets/scripts/pop-up.js"></script>
-<?php include("includes/footer.php");?>
+<?php include __DIR__ . "/includes/footer.php";?>

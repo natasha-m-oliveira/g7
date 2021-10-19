@@ -46,7 +46,23 @@ input, textarea, button, .button {
     height: 5rem;
 }
 
-body, button, input, textarea {
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0 1.5rem;
+    margin: 1rem 0 2rem 0;
+    height: 4rem;
+}
+
+select option {
+    background: var(--blue-dark);
+}
+
+select option:checked {
+    background: var(--green);
+}
+
+body, button, input, textarea, select {
     /*intervalo de tamanho
     mínimo; ideal; máximo*/
     font-size: clamp(14px, 1.8rem, 2vw);

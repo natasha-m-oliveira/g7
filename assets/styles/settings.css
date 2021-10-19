@@ -33,7 +33,18 @@ main {
     font-weight: 700;
 }
 
+.table-header{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.table-header .button{
+    width: 10rem;
+}
+
 .styled-table {
+    width: 100%;
     border-collapse: collapse;
     margin: 2.5rem 0;
     font-size: clamp(14px, 1.6rem, 2vw);
@@ -63,6 +74,10 @@ main {
 
 .styled-table tbody tr:hover{
     transform: scale(1.06);
+}
+
+.styled-table tbody tr a{
+    color: var(--white);
 }
 
 .styled-table tbody tr .far{

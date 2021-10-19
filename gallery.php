@@ -1,4 +1,4 @@
-<?php include("includes/header.php");?>
+<?php include __DIR__ . "/includes/header.php";?>
 <link rel="stylesheet" href="assets/styles/gallery.css">
 <main>
     <div class="container">
@@ -84,6 +84,5 @@
         </div>
     </div>
 </main>
-<?php include("includes/pop-up.php");?>
-<script src="assets/scripts/pop-up.js"></script>
-<?php include("includes/footer.php");?>
+<?php include __DIR__ . "/includes/form-password.php";?>
+<?php include __DIR__ . "/includes/footer.php";?>
