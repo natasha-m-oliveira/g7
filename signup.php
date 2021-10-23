@@ -63,15 +63,19 @@ if (!empty( $_POST["signup-btn"])) {
                         <input type="password" name="confirm-password" id="confirm-password" inputmode="verbatim" required>
                         <div class="toast">
                             <?php
-                                if (!empty($registrationResponse["status"])) {
-                                    if ($registrationResponse["status"] == "error") { ?>
-                                        <div class="server-response error-msg"><?php echo $registrationResponse["message"]; ?></div>
-                                    <?php
-                                    } else if ( $registrationResponse["status"] == "success" ) { ?>
-                                        <div class="server-response success-msg"><?php echo $registrationResponse["message"]; ?></div>
-                                    <?php 
-                                    }
-                                } ?>
+                            if (!empty($registrationResponse["status"])) {
+                                if ($registrationResponse["status"] == "error") { ?>
+                                    <div class="server-response error-msg">
+                                        <?php echo $registrationResponse["message"]; ?>
+                                    </div>
+                                <?php
+                                } else if ( $registrationResponse["status"] == "success" ) { ?>
+                                    <div class="server-response success-msg">
+                                        <?php echo $registrationResponse["message"]; ?>
+                                    </div>
+                                <?php 
+                                }
+                            } ?>
                         </div>
                         <p>Você já possui uma conta? <a href="login.php">Clique aqui</a></p>
                         <input type="submit" class="button" name="signup-btn" id="signup-btn" value="Cadastre-se">

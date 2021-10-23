@@ -1,18 +1,36 @@
 <?php
-require __DIR__ . "/vendor/autoload.php";
+// require_once __DIR__ . '/vendor/autoload.php';
 use PhpLogin\Member;
+use PhpLogin\Pagination;
 session_start();
+if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) {
+    require_once __DIR__ . '/Model/Member.php';
+    require_once __DIR__ . '/Model/Pagination.php';
+    
+    //Busca
+    $search = filter_input(INPUT_GET, "search", FILTER_SANITIZE_STRING);
+    
+    //Condições SQL
+    $conditions = [
+        strlen($search) ? 'username LIKE "%'.str_replace(' ', '%', $search).'%"' : null,
+        strlen($search) ? 'email LIKE "%'.str_replace(' ', '%', $search).'%"' : null
+    ];
+    
+    //Remove posições vazias
+    $conditions = array_filter($conditions);
+    $where = implode(' OR ', $conditions);
 
-if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4) {
-    $username = $_SESSION["username"];
-    session_write_close();
-    require_once __DIR__ . '/Model/Member.php';	
     $member = new Member();
-    $users = $member->listMember();
+
+    //Quantidade total de usuários
+    $qdtMember = $member->getNumberOfMembers($where);
+
+    //Paginação
+    $obPagination = new Pagination($qdtMember[0]['qdt'], $_GET['currentPage'] ?? 1, 5);
+    
+    $users = $member->listMember($where, null, $obPagination->getLimit());
 } else {
-    session_unset();
-    session_write_close();
-    $url = "./login.php";
+    $url = "./index.php";
     header("Location: $url");
 }
 ?>
@@ -66,7 +84,7 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4)
             <div class="container">
                 <div class="welcome">
                     <div class="title">
-                        <h1 data-typed-words><?php echo $username; ?></h1>
+                        <h1 data-typed-words><?php echo $_SESSION["username"]; ?></h1>
                         <h1 data-typed-cursor>|</h1>
                     </div>
                 </div>

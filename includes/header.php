@@ -1,15 +1,5 @@
 <?php
 session_start();
-
-if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] > 1) {
-    $username = $_SESSION["username"];
-    session_write_close();
-} else {
-    session_unset();
-    session_write_close();
-    $url = "./login.php";
-    header("Location: $url");
-}
 ?>
 <!DOCTYPE html>
 <html lang="PT_br">
@@ -66,14 +56,29 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] > 1)
                     <li><a href="#actions" data-menu-item>AÇÕES</a></li>
                     <li><a href="./gallery.php" data-menu-item>GALERIA</a></li>
                     <li><a data-menu-item>CONTATO</a></li>
-                    <li class="settings-mobile"><a href="./logout.php" data-menu-item>SAIR</a></li>
+                    <?php if (!empty($_SESSION["username"])) { ?>
+                        <li class="settings-mobile"><a href="./logout.php" data-menu-item>SAIR</a></li>
+                    <?php
+                    } else { ?>
+                        <li class="settings-mobile"><a href="./login.php" data-menu-item>ENTRAR</a></li>
+                    <?php
+                    } ?>
                 </ul>
             </nav>
             <div class="dropdown">
                 <div class="dropbtn button" data-menu-config><i class="fas fa-cogs"></i></div>
                 <div class="dropdown-content">
+                    <?php if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) { ?>
+                        <a href="./settings.php"><i class="fas fa-users-cog"></i></a>
+                    <?php } ?>
                     <a data-open-pop-up><i class="fas fa-user-cog"></i></a>
-                    <a href="./signup.php"><i class="fas fa-sign-out-alt"></i></a>
+                    <?php if (!empty($_SESSION["username"])) { ?>
+                        <a href="./signup.php"><i class="fas fa-sign-out-alt"></i></a>
+                        <?php
+                    } else { ?>
+                        <a href="./login.php"><i class="fas fa-sign-out-alt"></i></a>
+                        <?php
+                    } ?>
                 </div>
             </div>
         </header>

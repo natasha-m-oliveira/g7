@@ -109,6 +109,24 @@ class DataSource
     }
 
     /**
+     * To insert
+     *
+     * @param string $query
+     * @param string $paramType
+     * @param array $paramArray
+     * @return int
+     */
+    public function insert($query, $paramType, $paramArray)
+    {
+        $stmt = $this->conn->prepare($query);
+        $this->bindQueryParams($stmt, $paramType, $paramArray);
+
+        $stmt->execute();
+        $insertId = $stmt->insert_id;
+        return $insertId;
+    }
+
+    /**
      * To update database register
      *
      * @param string $query
@@ -131,21 +149,25 @@ class DataSource
     }
 
     /**
-     * To insert
+     * To delete database register
      *
      * @param string $query
      * @param string $paramType
      * @param array $paramArray
-     * @return int
+     * @return array
      */
-    public function insert($query, $paramType, $paramArray)
+    public function delete($query, $paramType = "", $paramArray = array())
     {
         $stmt = $this->conn->prepare($query);
-        $this->bindQueryParams($stmt, $paramType, $paramArray);
 
+        if (! empty($paramType) && ! empty($paramArray)) {
+
+            $this->bindQueryParams($stmt, $paramType, $paramArray);
+        }
         $stmt->execute();
-        $insertId = $stmt->insert_id;
-        return $insertId;
+        $resultDelete = $stmt->affected_rows;
+
+        return $resultDelete;
     }
 
     /**

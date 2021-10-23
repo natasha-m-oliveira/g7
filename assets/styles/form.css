@@ -104,11 +104,13 @@ main .container {
     border-bottom: .2rem solid var(--red);
 }
 
-.error-msg {
+.error-msg,
+#error {
     color: var(--red);
 }
 
-.success-msg {
+.success-msg,
+#success {
     color: var(--green);
 }
 

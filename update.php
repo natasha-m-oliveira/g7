@@ -1,22 +1,20 @@
 <?php
 use PhpLogin\Member;
 session_start();
-if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4) {
+if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
     if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
         $url = "./index.php?status=error";
         header("Location: $url");
     }
-    session_write_close();
     require_once __DIR__ . '/Model/Member.php';	
     $member = new Member();
     $users = $member->getMemberById($_GET['id']);
     if(!empty($_POST["update-btn"])){
-        $responseUpdateMember = $member->changeProfile();
+        $responseUpdate = $member->changeProfile();
+        $users = $member->getMemberById($_GET['id']);
     }
 } else {
-    session_unset();
-    session_write_close();
-    $url = "./login.php";
+    $url = "./index.php";
     header("Location: $url");
 }
 
@@ -52,7 +50,7 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4)
                             <label for="email">E-mail:</label>
                             <input type="text" name="email" id="email" inputmode="verbatim" value="<?php echo $user['email'];?>" required>
                             <label for="update-password">Senha:</label>
-                            <input type="password" name="update-password" id="update-password" inputmode="verbatim" value="senhateste123" required>
+                            <input type="password" name="update-password" id="update-password" inputmode="verbatim" value="******" required>
                             <label for="acess-profile">Perfil:</label>
                             <select name="acess-profile" id="acess-profile">
                                 <option value="0" disabled="disabled">Selecione o perfil</option>
@@ -61,23 +59,23 @@ if (isset($_SESSION["id_access_profile"]) && $_SESSION["id_access_profile"] = 4)
                                 <option value="3" <?=($user['id_access_profile'] == '3')?'selected="true"':''?>>Explorador</option>
                                 <option value="4" <?=($user['id_access_profile'] == '4')?'selected="true"':''?>>Administrador</option>
                             </select>
-                            <div class="toast">
-                                <?php
-                                if (!empty($responseUpdateMember["status"])) {
-                                    if ($responseUpdateMember["status"] == "error") { ?>
-                                <div class="server-response error-msg">
-                                    <?php echo $responseUpdateMember["message"]; ?>
-                                </div>
-                                <?php
-                                    } else if ($responseUpdateMember["status"] == "success") { ?>
-                                <div class="server-response success-msg">
-                                    <?php echo $responseUpdateMember["message"]; ?>
-                                </div>
-                                <?php 
-                                    }
-                                } ?>
-                            </div>
                         <?php }); ?>
+                        <div class="toast">
+                            <?php
+                            if (!empty($responseUpdate["status"])) {
+                                if ($responseUpdate["status"] == "error") { ?>
+                                    <div class="server-response error-msg">
+                                        <?php echo $responseUpdate["message"]; ?>
+                                    </div>
+                                <?php
+                                } else if ($responseUpdate["status"] == "success") { ?>
+                                    <div class="server-response success-msg">
+                                        <?php echo $responseUpdate["message"]; ?>
+                                    </div>
+                                <?php
+                                }
+                            } ?>
+                        </div>
                         <div class="action">
                             <a href="settings.php" class="button go-back">VOLTAR</a>
                             <input type="submit" class="button" name="update-btn" id="update-btn" value="Salvar">

@@ -146,7 +146,7 @@ class Member
             if (!empty($last_access)) {
                 session_start();
                 $_SESSION["username"] = $memberRecord[0]["username"];
-                $_SESSION["id_access_profile"] = $memberRecord[0]["id_access_profile"];
+                $_SESSION["access"] = $memberRecord[0]["id_access_profile"];
                 session_write_close();
                 $url = "./";
                 header("Location: $url");
@@ -192,6 +192,31 @@ class Member
         return $updateMemberRecord;
     }
 
+    public function deleteMember()
+    {
+        $id = $_POST["user-id"];
+        if (!empty($id)) {
+            $query = 'DELETE FROM member WHERE id = ?';
+            $paramType = 'i';
+            $paramValue = array(
+                $id
+            );
+            $deleteMemberRecord = $this->ds->delete($query, $paramType, $paramValue);
+        }
+        if (!empty($deleteMemberRecord)) {
+            $response = array(
+                "status" => "success",
+                "message" => "Usuário deletado com sucesso."
+            );
+        } else {
+            $response = array(
+                "status" => "error",
+                "message" => "Oops, algo deu errado."
+            );
+        }
+        return $response;
+    }
+
     public function changeMyPassword()
     {
         $checkMember = $this->getMember($_POST["username"]);
@@ -231,13 +256,12 @@ class Member
         $acessProfile = $_POST["acess-profile"];
         $resultUpdate = 0;
         if (!empty($checkMember)) {
-            if (!empty($_POST["update-password"]) || $_POST["update-password"] !== "senhateste123") {
+            if (!empty($_POST["update-password"]) || $_POST["update-password"] !== "******") {
                 $hashedNewPassword = password_hash($_POST["update-password"], PASSWORD_DEFAULT);
-                $resultUpdate = $this->updatePassword($_POST["username"], $hashedNewPassword);
+                $resultUpdate = $this->updatePassword($email, $hashedNewPassword);
             }
             if($email !== $checkMember[0]["email"] || $acessProfile !== $checkMember[0]["id_access_profile"]){
-                $fields = 'email = '.$email.', id_access_profile = '.$acessProfile;
-                $resultUpdate = updateMember($email, $acessProfile, $id);
+                $resultUpdate = $this->updateMember($email, $acessProfile, $id);
             }
         } else {
             $resultUpdate = 0;
@@ -250,7 +274,7 @@ class Member
         } else if ($resultUpdate == 0) {
             $response = array(
                 "status" => "error",
-                "message" => "Ops, algo deu errado."
+                "message" => "Oops, algo deu errado."
             );
         }
         return $response;
@@ -262,7 +286,17 @@ class Member
         $where = strlen($where) ? 'WHERE '.$where : '';
         $order = strlen($order) ? 'ORDER BY '.$order : '';
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
-        $query = 'SELECT '.$fields.' FROM member as a INNER JOIN access_profile AS b ON a.id_access_profile = b.id'.$where.' '.$order.' '.$limit;
+        $query = 'SELECT '.$fields.' FROM member as a INNER JOIN access_profile AS b ON a.id_access_profile = b.id '.$where.' '.$order.' '.$limit;
+        $resultMembers = $this->ds->select($query);
+        
+        return $resultMembers;
+    }
+
+    public function getNumberOfMembers($where = null)
+    {
+        $fields = 'COUNT(*) AS qdt';
+        $where = strlen($where) ? 'WHERE '.$where : '';
+        $query = 'SELECT '.$fields.' FROM member '.$where;
         $resultMembers = $this->ds->select($query);
         
         return $resultMembers;

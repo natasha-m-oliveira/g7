@@ -33,14 +33,40 @@ main {
     font-weight: 700;
 }
 
-.table-header{
+.table-header {
     width: 100%;
     display: flex;
-    justify-content: end;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
-.table-header .button{
-    width: 10rem;
+.table-header .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+}
+
+.table-header form {
+    display: flex;
+    align-items: center;
+    border-bottom: .2rem solid var(--green);
+    border-radius: 0;
+}
+
+.table-header form input {
+    border-bottom: 0;
+}
+
+.table-header form button {
+    background: var(--blue-dark);
+    color: var(--white);
+    height: 2rem;
+}
+
+.table-header form button:hover {
+    color: var(--yellow);
 }
 
 .styled-table {
@@ -59,8 +85,7 @@ main {
     font-weight: 700;
 }
 
-.styled-table th,
-.styled-table td {
+.styled-table th, .styled-table td {
     padding: 1.2rem 1.5rem;
     border-radius: 0;
 }
@@ -72,24 +97,28 @@ main {
     transition: 0.5s;
 }
 
-.styled-table tbody tr:hover{
+.styled-table tbody tr:hover {
     transform: scale(1.06);
 }
 
-.styled-table tbody tr a{
+.styled-table tbody tr a {
     color: var(--white);
 }
 
-.styled-table tbody tr .far{
+.styled-table tbody tr .far {
     margin: 0.5rem;
     cursor: pointer;
 }
 
-.styled-table tbody tr .far:hover:nth-child(1){
+.styled-table tbody tr .no-records-found {
+    text-align: center;
+}
+
+.styled-table tbody tr .far:hover:nth-child(1) {
     color: var(--green);
 }
 
-.styled-table tbody tr .far:hover:nth-child(2){
+.styled-table tbody tr .far:hover:nth-child(2) {
     color: var(--red);
 }
 
@@ -99,4 +128,24 @@ main {
 
 .styled-table tbody tr:last-of-type {
     border-bottom: 0.2rem solid var(--white);
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .button-light {
+    width: 3rem;
+    height: 3rem;
+    font-weight: 700;
+    background: var(--white);
+    color: var(--blue-dark);
+    margin: 0 0.5rem;
+}
+
+.pagination .button-light.active {
+    background: var(--green);
 }
