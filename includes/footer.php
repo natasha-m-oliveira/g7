@@ -4,10 +4,10 @@
                 <img src="assets/images/light-logo.svg" alt="G7 Logo">
             </div>
             <div class="social-media">
-                <a href="https://www.instagram.com/cegru.lab/" target="_blank" class="social-item" id="instagram"></a>
+                <!-- <a href="https://www.instagram.com/cegru.lab/" target="_blank" class="social-item" id="instagram"></a> -->
                 <a href="https://www.linkedin.com/company/g7-rede-de-coopera%C3%A7%C3%A3o/" target="_blank"
                     class="social-item" id="linkedin"></a>
-                <a href="https://wa.me/5511945956773" target="_blank" class="social-item" id="whatsapp"></a>
+                <a href="https://wa.me/553588225358" target="_blank" class="social-item" id="whatsapp"></a>
             </div>
         </div>
         <div class="second-line">

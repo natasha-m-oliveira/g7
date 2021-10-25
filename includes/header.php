@@ -55,7 +55,7 @@ session_start();
                     <li><a href="#team" data-menu-item>EQUIPE</a></li>
                     <li><a href="#actions" data-menu-item>AÇÕES</a></li>
                     <li><a href="./gallery.php" data-menu-item>GALERIA</a></li>
-                    <li><a data-menu-item>CONTATO</a></li>
+                    <li><a href="#national-mobility" data-menu-item>Mobilidade Nacional</a></li>
                     <?php if (!empty($_SESSION["username"])) { ?>
                         <li class="settings-mobile"><a href="./logout.php" data-menu-item>SAIR</a></li>
                     <?php
@@ -73,7 +73,7 @@ session_start();
                     <?php } ?>
                     <a data-open-pop-up><i class="fas fa-user-cog"></i></a>
                     <?php if (!empty($_SESSION["username"])) { ?>
-                        <a href="./signup.php"><i class="fas fa-sign-out-alt"></i></a>
+                        <a href="./logout.php"><i class="fas fa-sign-out-alt"></i></a>
                         <?php
                     } else { ?>
                         <a href="./login.php"><i class="fas fa-sign-out-alt"></i></a>
