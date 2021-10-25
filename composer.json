@@ -1,8 +1,0 @@
-{
-    "name":"rede/sete",
-    "autoload":{
-        "psr-4": {
-            "Model\\":"Model/"
-        }
-    }
-}

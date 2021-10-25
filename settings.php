@@ -1,5 +1,4 @@
 <?php
-// require_once __DIR__ . '/vendor/autoload.php';
 use PhpLogin\Member;
 use PhpLogin\Pagination;
 session_start();

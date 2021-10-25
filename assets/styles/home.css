@@ -328,6 +328,7 @@ p {
 /*Events*/
 
 .events.title{
+    width: 100%;
     margin-bottom: 3rem;
 }
 .event {
