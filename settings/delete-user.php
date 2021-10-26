@@ -6,13 +6,13 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
         $url = "./index.php?status=error";
         header("Location: $url");
     }
-    require_once __DIR__ . '/Model/Member.php';
+    require_once __DIR__ . '/../Model/Member.php';
     $member = new Member();
     if(!empty($_POST["delete-btn"])){
         $responseDelete = $member->deleteMember();
     }
 } else {
-    $url = "./index.php";
+    $url = "../index.php";
     header("Location: $url");
 }
 
@@ -27,11 +27,11 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
     <title>Editar</title>
 
     <!--CSS-->
-    <link rel="stylesheet" href="assets/styles/global.css">
-    <link rel="stylesheet" href="assets/styles/form.css">
+    <link rel="stylesheet" href="../assets/styles/global.css">
+    <link rel="stylesheet" href="../assets/styles/form.css">
 
     <!--ICON-->
-    <link rel="icon" href="assets/images/icon.svg">
+    <link rel="icon" href="../assets/images/icon.svg">
 </head>
 
 <body>
@@ -63,14 +63,14 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                             if (empty($responseDelete["status"])) { ?>
                                 <p>Tem certeza que deseja detelar o usuário?</p>
                                 <div class="action">
-                                    <a href="settings.php" class="button go-back">VOLTAR</a>
+                                    <a href="user.php" class="button go-back">VOLTAR</a>
                                     <input type="submit" class="button delete" name="delete-btn" id="delete-btn" value="Deletar">
                                 </div>
                             <?php 
                             } else{
                                 ?>
                                 <div class="action">
-                                    <a href="settings.php" class="button go-back">VOLTAR</a>
+                                    <a href="user.php" class="button go-back">VOLTAR</a>
                                 </div>
                             <?php
                             } ?>
@@ -78,5 +78,5 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                 </div>
             </div>
         </main>
-        <script src="assets/scripts/validation.js"></script>
-    <?php include __DIR__ . "/includes/footer.php";?>
+        <script src="../assets/scripts/validation.js"></script>
+    <?php include __DIR__ . "/../includes/footer.php";?>

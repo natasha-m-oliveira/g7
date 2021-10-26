@@ -1,4 +1,13 @@
-<?php include __DIR__ . "/includes/header.php"; ?>
+<?php
+session_start();
+use PhpLogin\Enrollment;
+if (!empty( $_POST["national-mobility-btn"])) {
+	require_once __DIR__ . '/Model/Enrollment.php';	
+	$enrollment = new Enrollment();
+	$registrationResponse = $enrollment->registerEnrollment();
+}
+
+include __DIR__ . "/includes/header.php"; ?>
 <main>
     <div class="container">
         <div class="anchor">
@@ -450,12 +459,12 @@
         <?php } ?>
         <div class="space"></div>
         <div class="form national-mobility" id="national-mobility">
-            <form name="national-mobility" action="" method="post" onsubmit="return false">
+            <form name="national-mobility" action="#national-mobility" method="post" onsubmit="return enrollmentValidation()">
                 <h2>Mobilidade Nacional</h2>
                 <div class="col">
                     <label for="home-institution">IES de Origem:</label>
-                    <select name="home-institution" id="home-institution">
-                        <option value="0" disabled="disabled">Selecione a Instituição de Origem</option>
+                    <select name="home-institution" id="home-institution" required>
+                        <option value="" disabled="disabled">Selecione a Instituição de Origem</option>
                         <option value="1">Eniac | Centro Universitário</option>
                         <option value="2">Faculdade FATEB</option>
                         <option value="3">Faculdade FECAF</option>
@@ -499,8 +508,8 @@
                 </div>
                 <div class="col">
                     <label for="destination-institution">IES de Destino:</label>
-                    <select name="destination-institution" id="destination-institution">
-                        <option value="0" disabled="disabled">Selecione a Instituição de Destino</option>
+                    <select name="destination-institution" id="destination-institution" required>
+                        <option value="" disabled="disabled">Selecione a Instituição de Destino</option>
                         <option value="1">Eniac | Centro Universitário</option>
                         <option value="2">Faculdade FATEB</option>
                         <option value="3">Faculdade FECAF</option>
@@ -535,6 +544,6 @@
         </div>
     </div>
 </main>
-<?php include __DIR__ . "/includes/form-password.php"; ?>
 <script src="assets/scripts/slides.js"></script>
+<script src="assets/scripts/validation.js"></script>
 <?php include __DIR__ . "/includes/footer.php"; ?>

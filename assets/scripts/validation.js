@@ -1,5 +1,5 @@
 const inputs = document.querySelectorAll("input");
-const signupButton = document.querySelectorAll("#signup-btn");
+const inputPhone = document.querySelector("#phone");
 
 function inputRequired(input, valid) {
     if (!valid) {
@@ -24,6 +24,73 @@ function createNotification(message, type) {
     setTimeout(() => {
         notif.remove();
     }, 3000);
+}
+
+function enrollmentValidation() {
+    let valid = true;
+    let message;
+    const homeInstitution = document.querySelector("#home-institution");
+    const firstName = document.querySelector("#first-name");
+    const lastName = document.querySelector("#last-name");
+    const email = document.querySelector("#email");
+    const phone = document.querySelector("#phone");
+    const course = document.querySelector("#course");
+    const semester = document.querySelector("#semester");
+    const destinationInstitution = document.querySelector("#destination-institution");
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    let phoneSet = phone.value.replace(/[^0-9]/g, "");
+
+    if (firstName.value == "") {
+        valid = false;
+        inputRequired(firstName, valid);
+    }
+    if (lastName.value == "") {
+        valid = false;
+        inputRequired(lastName, valid);
+    }
+    if (email.value == "") {
+        valid = false;
+        inputRequired(email, valid);
+    } else if (!(emailRegex.test(email.value))) {
+        message = "E-mail inválido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(email, valid);
+    }
+    if (phone.value == "") {
+        valid = false;
+        inputRequired(phone, valid);
+    } else if (phoneSet.length <= 10) {
+        message = "Número de telefone válido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(phone, valid);
+    }
+    if (course.value == "") {
+        valid = false;
+        inputRequired(course, valid);
+    }
+    if (semester.value == "") {
+        valid = false;
+        inputRequired(semester, valid);
+    } else if (semester.value < 0 && semester.value > 10) {
+        message = "O semestre deve ser um número inteiro maior que 0 e menor ou igual a 10.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(phone, valid);
+    }
+    if (homeInstitution.options[homeInstitution.selectedIndex].text == destinationInstitution.options[destinationInstitution.selectedIndex].text) {
+        message = "A instituição de destino não pode ser igual a instituição de origem.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(homeInstitution, valid);
+        inputRequired(destinationInstitution, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
+
 }
 
 function signupValidation() {
@@ -62,11 +129,11 @@ function signupValidation() {
         inputRequired(password, valid);
         inputRequired(confirmPassword, valid);
     }
-    if(valid === true){
+    if (valid === true) {
         return true;
     }
     return false;
-    
+
 }
 
 function loginValidation() {
@@ -123,7 +190,7 @@ function changePasswordValidation() {
     return false;
 }
 
-function updateUser(){
+function updateUser() {
     let valid = true;
     let message;
     const username = document.querySelector("#username");
@@ -169,6 +236,13 @@ if (inputs[0] !== null) {
                 inputRequired(input, true);
             }
         });
+    });
+}
+
+if (inputPhone !== null) {
+    inputPhone.addEventListener("input", (e) => {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     });
 }
 

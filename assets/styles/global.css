@@ -145,48 +145,9 @@ button:hover, .button:hover {
     border-top: 0.2rem solid var(--green);
 }
 
-.content header .dropbtn {
-    color: var(--blue-dark);
-    padding: 0.7rem 1.5rem;
-    font-size: 2rem;
+.content header .button {
     font-weight: 700;
-    border: none;
-    cursor: pointer;
-}
-
-.content header .dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.content header .dropdown-content {
-    display: none;
-    position: absolute;
-    border-top: 1rem solid var(--blue-dark);
-    box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.content header .dropdown-content a {
-    color: var(--blue-dark);
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    background: var(--green);
-    padding: 0.7rem 1.5rem;
-    font-size: 2rem;
-    display: block;
-}
-
-.content header .dropdown-content a:hover {
-    filter: brightness(1.2);
-}
-
-.content header .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.content header .settings-mobile {
-    display: none;
+    width: 10rem;
 }
 
 /*Scrollbar*/

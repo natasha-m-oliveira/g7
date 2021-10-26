@@ -6,7 +6,7 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
         $url = "./index.php?status=error";
         header("Location: $url");
     }
-    require_once __DIR__ . '/Model/Member.php';	
+    require_once __DIR__ . '/../Model/Member.php';	
     $member = new Member();
     $users = $member->getMemberById($_GET['id']);
     if(!empty($_POST["update-btn"])){
@@ -14,7 +14,7 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
         $users = $member->getMemberById($_GET['id']);
     }
 } else {
-    $url = "./index.php";
+    $url = "../index.php";
     header("Location: $url");
 }
 
@@ -29,11 +29,11 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
     <title>Editar</title>
 
     <!--CSS-->
-    <link rel="stylesheet" href="assets/styles/global.css">
-    <link rel="stylesheet" href="assets/styles/form.css">
+    <link rel="stylesheet" href="../assets/styles/global.css">
+    <link rel="stylesheet" href="../assets/styles/form.css">
 
     <!--ICON-->
-    <link rel="icon" href="assets/images/icon.svg">
+    <link rel="icon" href="../assets/images/icon.svg">
 </head>
 
 <body>
@@ -77,12 +77,12 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                             } ?>
                         </div>
                         <div class="action">
-                            <a href="settings.php" class="button go-back">VOLTAR</a>
+                            <a href="user.php" class="button go-back">VOLTAR</a>
                             <input type="submit" class="button" name="update-btn" id="update-btn" value="Salvar">
                         </div>
                     </form>
                 </div>
             </div>
         </main>
-        <script src="assets/scripts/validation.js"></script>
-    <?php include __DIR__ . "/includes/footer.php";?>
+        <script src="../assets/scripts/validation.js"></script>
+    <?php include __DIR__ . "/../includes/footer.php";?>

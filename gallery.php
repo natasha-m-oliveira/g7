@@ -84,5 +84,4 @@
         </div>
     </div>
 </main>
-<?php include __DIR__ . "/includes/form-password.php";?>
 <?php include __DIR__ . "/includes/footer.php";?>

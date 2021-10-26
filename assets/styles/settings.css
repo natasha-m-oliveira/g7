@@ -1,6 +1,149 @@
-main {
-    background: var(--blue-dark), var(--blue-dark);
+.content {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 11.4rem 1fr 15rem;
+    grid-template-areas: "header" "main" "footer"
 }
+
+header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main {
+    grid-area: main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+}
+
+main .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 80%;
+}
+
+body {
+    /* display: flex; */
+    background: var(--white);
+}
+
+.content header {
+    width: 100%;
+}
+
+/*Menu*/
+
+.content header .nav {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    bottom: 2rem;
+    width: 6rem;
+    border-radius: 1rem;
+    box-sizing: initial;
+    border-left: 0.5rem solid var(--blue-dark);
+    background: var(--blue-dark);
+    transition: width 0.5s;
+    overflow-x: hidden;
+}
+
+.content header .nav.active {
+    width: 25rem;
+}
+
+.content header .nav ul {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-top: 4rem;
+}
+
+.content header .nav ul li {
+    position: relative;
+    width: 100%;
+}
+
+.content header .nav ul li a {
+    position: relative;
+    display: flex;
+    width: 100%;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    padding: 0;
+}
+
+.content header .nav ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 5rem;
+    height: 5rem;
+    line-height: 7rem;
+    text-align: center;
+}
+
+.content header .nav ul li a .icon .fas {
+    font-size: 2.4rem;
+}
+
+.content header .nav ul li a .title {
+    position: relative;
+    display: block;
+    padding-left: 1rem;
+    height: 6rem;
+    line-height: 6rem;
+    white-space: normal;
+}
+
+.content header .nav a.current, .content header .nav a:hover {
+    border-top: 0;
+    background: var(--white);
+    color: var(--black);
+}
+
+.content header .toggle {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 2rem;
+    right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    background: var(--blue-dark);
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.content header .toggle.active {
+    background: var(--red);
+}
+
+.content header .toggle .fas {
+    position: absolute;
+    color: var(--white);
+    font-size: 2.4rem;
+    display: none;
+}
+
+.content header .toggle .fas.open, .content header .toggle.active .fas.close {
+    display: block;
+}
+
+.content header .toggle .fas.close, .content header .toggle.active .fas.open {
+    display: none;
+}
+
+/*Welcome*/
 
 .welcome {
     width: 100%;
@@ -14,6 +157,7 @@ main {
 
 .welcome h1 {
     font-size: 6rem;
+    color: var(--black);
 }
 
 .welcome h1:nth-child(2) {
@@ -33,6 +177,13 @@ main {
     font-weight: 700;
 }
 
+.title h2 {
+    font-size: 2rem;
+    color: var(--black);
+}
+
+/*Table*/
+
 .table-header {
     width: 100%;
     display: flex;
@@ -40,10 +191,26 @@ main {
     justify-content: space-between;
 }
 
+.table-header .first-line h2, .table-header .first-line h2 a {
+    color: var(--black);
+    font-size: 1.6rem;
+}
+
+.table-header .first-line h2 a:hover {
+    color: var(--blue-dark);
+}
+
+.table-header .second-line {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
 .table-header .button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 2rem;
     width: 4rem;
     height: 4rem;
 }
@@ -57,16 +224,17 @@ main {
 
 .table-header form input {
     border-bottom: 0;
+    color: var(--black);
 }
 
 .table-header form button {
-    background: var(--blue-dark);
-    color: var(--white);
+    background: var(--white);
+    color: var(--blue-dark);
     height: 2rem;
 }
 
 .table-header form button:hover {
-    color: var(--yellow);
+    color: var(--black);
 }
 
 .styled-table {
@@ -75,6 +243,7 @@ main {
     margin: 2.5rem 0;
     font-size: clamp(14px, 1.6rem, 2vw);
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+    background: var(--blue-dark);
 }
 
 .styled-table thead tr {
@@ -97,8 +266,9 @@ main {
     transition: 0.5s;
 }
 
-.styled-table tbody tr:hover {
-    transform: scale(1.06);
+.styled-table tbody tr:hover, .styled-table tbody tr:nth-of-type(even):hover {
+    /* transform: scale(1.06); */
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .styled-table tbody tr a {
@@ -130,6 +300,8 @@ main {
     border-bottom: 0.2rem solid var(--white);
 }
 
+/*Pagination*/
+
 .pagination {
     width: 100%;
     display: flex;
@@ -141,8 +313,8 @@ main {
     width: 3rem;
     height: 3rem;
     font-weight: 700;
-    background: var(--white);
-    color: var(--blue-dark);
+    background: var(--blue-dark);
+    color: var(--white);
     margin: 0 0.5rem;
 }
 
