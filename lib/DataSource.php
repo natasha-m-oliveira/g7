@@ -24,7 +24,7 @@ class DataSource
 
     const PASSWORD = 'root';
 
-    const DATABASENAME = 'g7';
+    const DATABASENAME = 'g7edu';
 
     private $conn;
 

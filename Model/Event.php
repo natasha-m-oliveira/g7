@@ -112,4 +112,15 @@ class Event
         
         return $resultEvents;
     }
+
+    public function getEventById($id)
+    {
+        $query = 'SELECT * FROM event WHERE id = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $id
+        );
+        $eventRecordById = $this->ds->select($query, $paramType, $paramValue);
+        return $eventRecordById;
+    }
 }

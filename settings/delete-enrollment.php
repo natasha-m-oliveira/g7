@@ -1,15 +1,15 @@
 <?php
-use PhpLogin\Member;
+use PhpLogin\Enrollment;
 session_start();
 if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
     if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
         $url = "./index.php?status=error";
         header("Location: $url");
     }
-    require_once __DIR__ . '/../Model/Member.php';
-    $member = new Member();
+    require_once __DIR__ . '/../Model/Enrollment.php';
+    $enrollment = new Enrollment();
     if(!empty($_POST["delete-btn"])){
-        $responseDelete = $member->deleteMember();
+        $responseDelete = $enrollment->deleteEnrollment();
     }
 } else {
     $url = "../index.php";
@@ -24,7 +24,7 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir Usuário</title>
+    <title>Exluir Inscrição</title>
 
     <!--CSS-->
     <link rel="stylesheet" href="../assets/styles/global.css">
@@ -39,9 +39,9 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
         <main>
             <div class="container">
                 <div class="form">
-                    <form name="delete-user" action="" method="post" class="delete" onsubmit="return true">
+                    <form name="delete-enrollment" action="" method="post" class="delete" onsubmit="return true">
                         <h1>Deletar Usuário</h1>
-                        <input type="text" name="user-id" id="user-id" class="sr-only" value="<?php echo $_GET['id']; ?>" readonly>
+                        <input type="text" name="enrollment-id" id="enrollment-id" class="sr-only" value="<?php echo $_GET['id']; ?>" readonly>
                         <div class="toast">
                             <?php
                             if (!empty($responseDelete["status"])) {
@@ -61,16 +61,16 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                         </div>
                         <?php
                             if (empty($responseDelete["status"])) { ?>
-                                <p>Tem certeza que deseja detelar o usuário?</p>
+                                <p>Tem certeza que deseja detelar a inscrição?</p>
                                 <div class="action">
-                                    <a href="user.php" class="button go-back">VOLTAR</a>
+                                    <a href="enrollment.php" class="button go-back">VOLTAR</a>
                                     <input type="submit" class="button delete" name="delete-btn" id="delete-btn" value="Deletar">
                                 </div>
                             <?php 
                             } else{
                                 ?>
                                 <div class="action">
-                                    <a href="user.php" class="button go-back">VOLTAR</a>
+                                    <a href="enrollment.php" class="button go-back">VOLTAR</a>
                                 </div>
                             <?php
                             } ?>

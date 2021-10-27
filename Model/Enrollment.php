@@ -86,7 +86,7 @@ class Enrollment
         if (!empty($deleteEnrollmentRecord)) {
             $response = array(
                 "status" => "success",
-                "message" => "Evento deletado com sucesso."
+                "message" => "Inscrição excluída com sucesso."
             );
         } else {
             $response = array(
@@ -117,5 +117,16 @@ class Enrollment
         $resultEnrollments = $this->ds->select($query);
         
         return $resultEnrollments;
+    }
+
+    public function getEnrollmentById($id)
+    {
+        $query = 'SELECT * FROM national_mobility WHERE id = ?';
+        $paramType = 'i';
+        $paramValue = array(
+            $id
+        );
+        $enrollmentRecordById = $this->ds->select($query, $paramType, $paramValue);
+        return $enrollmentRecordById;
     }
 }

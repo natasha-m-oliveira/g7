@@ -1,10 +1,10 @@
 --
--- Database: `g7`
+-- Database: `g7edu`
 --
 
 -- --------------------------------------------------------
 
-USE g7;
+USE g7edu;
 
 --
 -- Estrutura `access_profile`
@@ -14,7 +14,7 @@ CREATE TABLE `access_profile` (
     `id` int(11) NOT NULL,
     `access_profile` varchar(200) NOT NULL,
     `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `update_at`timestamp ON UPDATE CURRENT_TIMESTAMP
+    `update_at` timestamp ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

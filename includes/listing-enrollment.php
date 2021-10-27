@@ -33,7 +33,7 @@
                     <td><?php echo $enrollment['semester']; ?></td>
                     <td><?php echo $enrollment['home']; ?></td>
                     <td><?php echo $enrollment['destination']; ?></td>
-                    <td><a href="update.php?id=<?php echo $enrollment['id']; ?>"><i class="far fa-edit"></i></a><a href="delete.php?id=<?php echo $enrollment['id']; ?>"><i class="far fa-trash-alt"></i></a></td>
+                    <td><a href="update-enrollment.php?id=<?php echo $enrollment['id']; ?>"><i class="far fa-edit"></i></a><a href="delete-enrollment.php?id=<?php echo $enrollment['id']; ?>"><i class="far fa-trash-alt"></i></a></td>
                 </tr>
 
             <?php

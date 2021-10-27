@@ -254,11 +254,10 @@ class Member
         $id = $_POST["user-id"];
         $email = $_POST["email"];
         $acessProfile = $_POST["acess-profile"];
-        $resultUpdate = 0;
         if (!empty($checkMember)) {
-            if (!empty($_POST["update-password"]) || $_POST["update-password"] !== "******") {
+            if (!empty($_POST["update-password"])) {
                 $hashedNewPassword = password_hash($_POST["update-password"], PASSWORD_DEFAULT);
-                $resultUpdate = $this->updatePassword($email, $hashedNewPassword);
+                $resultUpdate = $this->updatePassword($_POST["username"], $hashedNewPassword);
             }
             if($email !== $checkMember[0]["email"] || $acessProfile !== $checkMember[0]["id_access_profile"]){
                 $resultUpdate = $this->updateMember($email, $acessProfile, $id);
