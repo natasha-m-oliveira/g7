@@ -93,6 +93,30 @@ function enrollmentValidation() {
 
 }
 
+function registerEventValidation() {
+    let valid = true;
+    const theme = document.querySelector("#theme");
+    const local = document.querySelector("#local");
+    const date = document.querySelector("#date");
+
+    if (theme.value == "") {
+        valid = false;
+        inputRequired(theme, valid);
+    }
+    if (local.value == "") {
+        valid = false;
+        inputRequired(local, valid);
+    }
+    if (date.value == "") {
+        valid = false;
+        inputRequired(date, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
+
+}
 function signupValidation() {
     let valid = true;
     let message;
@@ -190,7 +214,7 @@ function changePasswordValidation() {
     return false;
 }
 
-function updateUser() {
+function changeUserValidation() {
     let valid = true;
     let message;
     const username = document.querySelector("#username");
@@ -220,6 +244,97 @@ function updateUser() {
         valid = false;
         createNotification(message, "error");
         inputRequired(acessProfile, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
+}
+
+function changeEnrollmentValidation() {
+    let valid = true;
+    let message;
+    const homeInstitution = document.querySelector("#home-institution");
+    const firstName = document.querySelector("#first-name");
+    const lastName = document.querySelector("#last-name");
+    const email = document.querySelector("#email");
+    const phone = document.querySelector("#phone");
+    const course = document.querySelector("#course");
+    const semester = document.querySelector("#semester");
+    const destinationInstitution = document.querySelector("#destination-institution");
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    let phoneSet = phone.value.replace(/[^0-9]/g, "");
+
+    if (firstName.value == "") {
+        valid = false;
+        inputRequired(firstName, valid);
+    }
+    if (lastName.value == "") {
+        valid = false;
+        inputRequired(lastName, valid);
+    }
+    if (email.value == "") {
+        valid = false;
+        inputRequired(email, valid);
+    } else if (!(emailRegex.test(email.value))) {
+        message = "E-mail inválido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(email, valid);
+    }
+    if (phone.value == "") {
+        valid = false;
+        inputRequired(phone, valid);
+    } else if (phoneSet.length <= 10) {
+        message = "Número de telefone válido.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(phone, valid);
+    }
+    if (course.value == "") {
+        valid = false;
+        inputRequired(course, valid);
+    }
+    if (semester.value == "") {
+        valid = false;
+        inputRequired(semester, valid);
+    } else if (semester.value < 0 && semester.value > 10) {
+        message = "O semestre deve ser um número inteiro maior que 0 e menor ou igual a 10.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(phone, valid);
+    }
+    if (homeInstitution.options[homeInstitution.selectedIndex].text == destinationInstitution.options[destinationInstitution.selectedIndex].text) {
+        message = "A instituição de destino não pode ser igual a instituição de origem.";
+        valid = false;
+        createNotification(message, "error");
+        inputRequired(homeInstitution, valid);
+        inputRequired(destinationInstitution, valid);
+    }
+    if (valid === true) {
+        return true;
+    }
+    return false;
+
+}
+
+function changeEventValidation() {
+    let valid = true;
+    const theme = document.querySelector("#theme");
+    const local = document.querySelector("#local");
+    const date = document.querySelector("#date");
+
+    if (theme.value == "") {
+        valid = false;
+        inputRequired(theme, valid);
+    }
+    if (local.value == "") {
+        valid = false;
+        inputRequired(local, valid);
+    }
+    if (date.value == "") {
+        valid = false;
+        inputRequired(date, valid);
     }
     if (valid === true) {
         return true;

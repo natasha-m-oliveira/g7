@@ -362,6 +362,9 @@ html {
     .content header .settings-mobile {
         display: block;
     }
+    .content header .button {
+        display: none;
+    }
     .container .anchor #top-of-page {
         bottom: 1rem;
         right: 0;

@@ -1,39 +1,39 @@
 <div class="table-header">
-<div class="first-line">
-        <h2><a href="../settings">Configurações</a> / Inscrições</h2>
+    <div class="first-line">
+        <h2><a href="../settings">Configurações</a> / Eventos</h2>
     </div>
     <div class="second-line">
         <form action="" action="get">
             <button type="submit"><i class="fas fa-search"></i></button>
             <input type="text" name="search" placeholder="Pesquisar..." value="<?= $search ?>">
         </form>
-        <a class="button" href="../index.php#national-mobility"><i class="fas fa-user-plus"></i></a>
+        <a class="button" href="create-event.php"><i class="fas fa-calendar-plus"></i></a>
     </div>
 </div>
 <table class="styled-table">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Curso</th>
-            <th>Semestre</th>
-            <th>IES Origem</th>
-            <th>IES Destino</th>
+            <th>Tema</th>
+            <th>Local</th>
+            <th>Visível</th>
+            <th>Categoria</th>
+            <th>Data</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        if (!empty($enrollments)) {
-            array_filter($enrollments, function ($enrollment) { ?>
+        if (!empty($meetings)) {
+            array_filter($meetings, function ($meeting) { ?>
                 <tr>
-                    <td><?=$enrollment['id']?></td>
-                    <td><?=$enrollment['name']?></td>
-                    <td><?=$enrollment['course']?></td>
-                    <td><?=$enrollment['semester']?></td>
-                    <td><?=$enrollment['home']?></td>
-                    <td><?=$enrollment['destination']?></td>
-                    <td><a href="update-enrollment.php?id=<?=$enrollment['id']?>"><i class="far fa-edit"></i></a><a href="delete-enrollment.php?id=<?=$enrollment['id']?>"><i class="far fa-trash-alt"></i></a></td>
+                    <td><?=$meeting['id']?></td>
+                    <td><?=$meeting['theme']?></td>
+                    <td><?=$meeting['local']?></td>
+                    <td><?=$meeting['visible'] == 1 ? 'Sim' : 'Não'?></td>
+                    <td><?=$meeting['category'] == 'private' ? 'Privado' : 'Público'?></td>
+                    <td><?=date('d/m/Y', strtotime($meeting['date']))?></td>
+                    <td><a href="update-event.php?id=<?=$meeting['id']?>"><i class="far fa-edit"></i></a><a href="delete-event.php?id=<?=$meeting['id']?>"><i class="far fa-trash-alt"></i></a></td>
                 </tr>
 
             <?php

@@ -43,7 +43,7 @@ class Enrollment
 
     public function updateEnrollment()
     {
-        $query = 'UPDATE national_mobility SET theme = ?, local = ?, visible = ?, category = ?, date = ? WHERE id = ?';
+        $query = 'UPDATE national_mobility SET first_name = ?, last_name = ?, email = ?, phone = ?, course = ?, semester = ?, id_home_institution = ?, id_destination_institution = ? WHERE id = ?';
         $paramType = 'sssssiiii';
         $paramValue = array(
             $_POST["first-name"],

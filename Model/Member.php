@@ -250,20 +250,20 @@ class Member
 
     public function changeProfile()
     {
-        $checkMember = $this->getMember($_POST["username"]);
         $id = $_POST["user-id"];
+        $username = $_POST["username"];
         $email = $_POST["email"];
-        $acessProfile = $_POST["acess-profile"];
-        if (!empty($checkMember)) {
-            if (!empty($_POST["update-password"])) {
-                $hashedNewPassword = password_hash($_POST["update-password"], PASSWORD_DEFAULT);
-                $resultUpdate = $this->updatePassword($_POST["username"], $hashedNewPassword);
-            }
-            if($email !== $checkMember[0]["email"] || $acessProfile !== $checkMember[0]["id_access_profile"]){
-                $resultUpdate = $this->updateMember($email, $acessProfile, $id);
-            }
-        } else {
-            $resultUpdate = 0;
+        $accessProfile = $_POST["access-profile"];
+        $password = $_POST["update-password"];
+        $hashedNewPassword = password_hash($password, PASSWORD_DEFAULT);
+        if (!empty($_POST["update-password"])) {
+            $resultUpdate = $this->updatePassword($username, $hashedNewPassword);
+        }
+        $updateOtherFields = $this->updateMember($email, $accessProfile, $id);
+        if($updateOtherFields == 0) {
+            $resultUpdate = 1;
+        }else {
+            $resultUpdate = $updateOtherFields;
         }
         if ($resultUpdate == 1) {
             $response = array(

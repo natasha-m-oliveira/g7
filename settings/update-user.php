@@ -41,7 +41,7 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
         <main>
             <div class="container">
                 <div class="form">
-                    <form name="update-user" action="" method="post" onsubmit="return updateUser()">
+                    <form name="update-user" action="" method="post" onsubmit="return changeUserValidation()">
                         <h1>Atualizar Usuário</h1>
                         <?php array_filter ($users, function ($user) { ?>
                             <input type="text" name="user-id" id="user-id" class="sr-only" value="<?=$user['id']?>" readonly>
@@ -51,8 +51,8 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                             <input type="text" name="email" id="email" inputmode="email" value="<?=$user['email']?>" required>
                             <label for="update-password">Senha:</label>
                             <input type="password" name="update-password" id="update-password" inputmode="verbatim" placeholder="******">
-                            <label for="acess-profile">Perfil:</label>
-                            <select name="acess-profile" id="acess-profile">
+                            <label for="access-profile">Perfil:</label>
+                            <select name="access-profile" id="access-profile">
                                 <option value="" disabled="disabled">Selecione o perfil</option>
                                 <option value="1" <?=($user['id_access_profile'] == '1')?'selected="true"':''?>>Básico</option>
                                 <option value="2" <?=($user['id_access_profile'] == '2')?'selected="true"':''?>>Visualizador</option>

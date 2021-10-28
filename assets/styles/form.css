@@ -94,6 +94,43 @@ main .container {
     margin-bottom: 2rem;
 }
 
+.form form input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.8) brightness(50%) sepia(10%) saturate(100%) hue-rotate(240deg);
+}
+
+.form form input[type=checkbox] {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0 0 2rem;
+}
+
+.form form .checkbox {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+form.column-model {
+    width: 80%;
+    padding: 4rem 1rem;
+}
+
+form .column-model {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.col {
+    width: 100%;
+    margin: 0 2rem;
+}
+
 /*Error Messages*/
 
 .toast {

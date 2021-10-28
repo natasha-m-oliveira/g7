@@ -63,7 +63,7 @@ if (btnMobile !== null) {
 if (page === "/gallery.php") {
     document.title = 'Galeria | G7';
     let i = 0;
-    const countMenuItem = menuItems.length - 2;
+    const countMenuItem = menuItems.length;
     while (i < countMenuItem) {
         menuItems[i].classList.remove("current");
         let href = menuItems[i].getAttribute("href");

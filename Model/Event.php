@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpLogin;
 
 class Event
@@ -13,12 +14,17 @@ class Event
 
     public function registerEvent()
     {
+        if (!empty($_POST["visible"])) {
+            $visible = 1;
+        } else {
+            $visible = 0;
+        }
         $query = 'INSERT INTO event (theme, local, visible, category, date) VALUES (?, ?, ?, ?, ?)';
-        $paramType = 'ssisi';
+        $paramType = 'ssiss';
         $paramValue = array(
             $_POST["theme"],
             $_POST["local"],
-            $_POST["visible"],
+            $visible,
             $_POST["category"],
             $_POST["date"]
         );
@@ -34,18 +40,23 @@ class Event
                 "message" => "Oops, algo deu errado."
             );
         }
-        
+
         return $response;
     }
 
     public function updateEvent()
     {
+        if (!empty($_POST["visible"])) {
+            $visible = 1;
+        } else {
+            $visible = 0;
+        }
         $query = 'UPDATE event SET theme = ?, local = ?, visible = ?, category = ?, date = ? WHERE id = ?';
-        $paramType = 'ssisi';
+        $paramType = 'ssissi';
         $paramValue = array(
             $_POST["theme"],
             $_POST["local"],
-            $_POST["visible"],
+            $visible,
             $_POST["category"],
             $_POST["date"],
             $_POST["event-id"]
@@ -62,7 +73,7 @@ class Event
                 "message" => "Oops, algo deu errado."
             );
         }
-        
+
         return $response;
     }
 
@@ -94,22 +105,22 @@ class Event
     public function listEvent($where = null, $order = null, $limit = null)
     {
         $fields = 'a.id, a.theme, a.local, a.visible, a.category, a.date';
-        $where = strlen($where) ? 'WHERE '.$where : '';
-        $order = strlen($order) ? 'ORDER BY '.$order : '';
-        $limit = strlen($limit) ? 'LIMIT '.$limit : '';
-        $query = 'SELECT '.$fields.' FROM event AS a '.$where.' '.$order.' '.$limit;
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+        $query = 'SELECT ' . $fields . ' FROM event AS a ' . $where . ' ' . $order . ' ' . $limit;
         $resultEvents = $this->ds->select($query);
-        
+
         return $resultEvents;
     }
 
     public function getNumberOfEvents($where = null)
     {
         $fields = 'COUNT(*) AS qdt';
-        $where = strlen($where) ? 'WHERE '.$where : '';
-        $query = 'SELECT '.$fields.' FROM event '.$where;
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $query = 'SELECT ' . $fields . ' FROM event ' . $where;
         $resultEvents = $this->ds->select($query);
-        
+
         return $resultEvents;
     }
 

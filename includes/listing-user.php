@@ -27,13 +27,13 @@
         if (!empty($users)) {
             array_filter($users, function ($user) { ?>
                 <tr>
-                    <td><?php echo $user['id']; ?></td>
-                    <td><?php echo $user['username']; ?></td>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['access_profile']; ?></td>
-                    <td><?php echo ($user['last_access'] == null ? '' : date('d/m/Y H:i:s', strtotime($user['last_access']))); ?></td>
-                    <td><?php echo date('d/m/Y H:i:s', strtotime($user['create_at'])); ?></td>
-                    <td><a href="update-user.php?id=<?php echo $user['id']; ?>"><i class="far fa-edit"></i></a><a href="delete-user.php?id=<?php echo $user['id']; ?>"><i class="far fa-trash-alt"></i></a></td>
+                    <td><?=$user['id']?></td>
+                    <td><?=$user['username']?></td>
+                    <td><?=$user['email']?></td>
+                    <td><?=$user['access_profile']?></td>
+                    <td><?=$user['last_access'] == null ? '' : date('d/m/Y H:i:s', strtotime($user['last_access']))?></td>
+                    <td><?=date('d/m/Y H:i:s', strtotime($user['create_at']))?></td>
+                    <td><a href="update-user.php?id=<?=$user['id']?>"><i class="far fa-edit"></i></a><a href="delete-user.php?id=<?=$user['id']?>"><i class="far fa-trash-alt"></i></a></td>
                 </tr>
 
             <?php
