@@ -44,7 +44,13 @@
             <nav role="navigation" class="nav" data-nav>
                 <ul>
                     <li class="list">
-                        <a href="../index.php" class="current">
+                        <a href="../index.php">
+                            <span class="icon"><img src="../assets/images/icon.svg" alt="G7 LOGO" class="logo"></span>
+                            <span class="title">G7</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="../settings/index.php">
                             <span class="icon"><i class="fas fa-home"></i></span>
                             <span class="title">Início</span>
                         </a>
