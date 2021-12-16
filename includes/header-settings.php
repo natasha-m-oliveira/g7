@@ -61,6 +61,9 @@
                             <span class="title">Senha</span>
                         </a>
                     </li>
+                    <?php
+                    if ($_SESSION["access"] > 1) {
+                        ?>
                     <li class="list">
                         <a href="../settings/user.php">
                             <span class="icon"><i class="fas fa-users"></i></span>
@@ -79,6 +82,7 @@
                             <span class="title">Inscrições</span>
                         </a>
                     </li>
+                    <?php } ?>
                     <li class="list">
                         <a href="../logout.php">
                             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>

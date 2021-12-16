@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) {
+if (!empty($_SESSION["username"])) {
 
 } else {
     $url = "../login.php";

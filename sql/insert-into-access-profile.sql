@@ -1,4 +1,4 @@
-USE g7;
+USE g7edu;
 
 INSERT INTO `access_profile` (`access_profile`) VALUE ('Básico'), ('Visualizador'), ('Explorador'), ('Administrador');
 

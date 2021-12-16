@@ -28,6 +28,11 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) {
     $obPagination = new Pagination($qdtMember[0]['qdt'], $_GET['currentPage'] ?? 1, 5);
 
     $users = $member->listMember($where, null, $obPagination->getLimit());
+
+    //Exportar para Excel
+    if(isset($_POST["export-btn"])) {
+        $exportResult = $member->exportMemberDatabase();
+    }
 } else {
     $url = "../index.php";
     header("Location: $url");

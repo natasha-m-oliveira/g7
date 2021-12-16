@@ -63,7 +63,7 @@ class Member
         } else if ($isEmailExists) {
             $response = array(
                 "status" => "error",
-                "message" => "Este email já está cadastrado."
+                "message" => "Este e-mail já está cadastrado."
             );
         } else {
             if (!empty($_POST["signup-password"])) {
@@ -262,7 +262,7 @@ class Member
         $updateOtherFields = $this->updateMember($email, $accessProfile, $id);
         if($updateOtherFields == 0) {
             $resultUpdate = 1;
-        }else {
+        } else {
             $resultUpdate = $updateOtherFields;
         }
         if ($resultUpdate == 1) {
@@ -281,7 +281,7 @@ class Member
 
     public function listMember($where = null, $order = null, $limit = null)
     {
-        $fields = 'a.id, a.username, a.email, b.access_profile, a.last_access, a.create_at';
+        $fields = 'a.id, a.username, a.email, b.access_profile, a.last_access, a.create_at, a.update_at';
         $where = strlen($where) ? 'WHERE '.$where : '';
         $order = strlen($order) ? 'ORDER BY '.$order : '';
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
@@ -299,5 +299,22 @@ class Member
         $resultMembers = $this->ds->select($query);
         
         return $resultMembers;
+    }
+
+    public function exportMemberDatabase()
+    {
+        $filename = 'Membros.xls';
+        header("Content-Type: application/vnd.ms-excel");
+	    header("Content-Disposition: attachment; filename=\"$filename\"");
+        $memberResult = $this->listMember(null, null, null);
+        $isPrintHeader = false;
+        foreach ($memberResult as $row) {
+            if (!$isPrintHeader) {
+                echo implode("\t", array_keys($row))."\n";
+                $isPrintHeader = true;
+            }
+            echo implode("\t", array_values(array_map("utf8_decode", $row)))."\n";
+        }
+        exit();
     }
 }

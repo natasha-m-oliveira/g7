@@ -29,6 +29,11 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) {
     $obPagination = new Pagination($qdtEnrollment[0]['qdt'], $_GET['currentPage'] ?? 1, 5);
 
     $enrollments = $enrollment->listEnrollment($where, null, $obPagination->getLimit());
+
+    //Exportar para Excel
+    if(isset($_POST["export-btn"])) {
+        $exportResult = $enrollment->exportEnrollmentDatabase();
+    }
 } else {
     $url = "../index.php";
     header("Location: $url");

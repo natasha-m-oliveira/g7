@@ -63,7 +63,7 @@ if (!empty($_SESSION["username"])) {
                             } ?>
                         </div>
                         <div class="action">
-                            <a href="user.php" class="button go-back">VOLTAR</a>
+                            <a href="index.php" class="button go-back">VOLTAR</a>
                             <input type="submit" class="button" name="change-my-account-btn" id="change-my-account-btn" value="Alterar">
                         </div>
                     </form>

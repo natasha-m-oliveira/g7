@@ -155,8 +155,9 @@ p {
     text-align: center;
 }
 
+/*Alterar: width: 100%;*/
 .map.right img {
-    width: 100%;
+    width: 80%;
 }
 
 /*Image Slide*/
@@ -312,9 +313,10 @@ p {
 .team {
     margin: 4rem 2rem;
 }
-
+/*Excluir: border-radius: 50%;*/
 .container .team img {
     width: 20rem;
+    border-radius: 50%;
 }
 
 .container .team.text-box {

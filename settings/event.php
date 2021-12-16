@@ -29,6 +29,11 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] > 1) {
     $obPagination = new Pagination($qdtEvent[0]['qdt'], $_GET['currentPage'] ?? 1, 5);
 
     $meetings = $event->listEvent($where, null, $obPagination->getLimit());
+
+    //Exportar para Excel
+    if(isset($_POST["export-btn"])) {
+        $exportResult = $event->exportEventDatabase();
+    }
 } else {
     $url = "../index.php";
     header("Location: $url");

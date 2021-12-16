@@ -10,6 +10,12 @@ class Pagination
     private $limit;
 
     /**
+     * This variable set the range between current page and two ending page numbers.
+     * @var integer
+     */
+    private $range;
+
+    /**
      * Total amount of bank results
      * @var integer
      */
@@ -34,10 +40,11 @@ class Pagination
      * @param integer $limit
      */
     
-    public function __construct($results, $currentPage = 1, $limit = 10)
+    public function __construct($results, $currentPage = 1, $limit = 10, $range = 2)
     {
         $this->results      = $results;
         $this->limit        = $limit;
+        $this->range        = $range;
         $this->currentPage = (is_numeric($currentPage) && $currentPage > 0) ? $currentPage : 1;
         $this->calculate();
     }
@@ -68,21 +75,45 @@ class Pagination
      * Method responsible for returning available page options
      * @return array
      */
-    public function getPages()
+    public function getPages($gets)
     {
-        //Does not return pages
-        if($this->pages == 1) return [];
-
-        //Pages
-        $pages = [];
-
-        for($i = 1; $i <= $this->pages; $i++){
-            $pages[] = [
-                'page' => $i,
-                'current' => $i == $this->currentPage
-            ];
+        if ($this->pages == 1) {
+            echo '<a href="?currentPage=1"><button type="button" class="button-light active">1</button></a>';
+            return;
+        }
+        //previous link button
+        if ($this->currentPage > 1) {
+            echo '<a href="?currentPage='. $this->currentPage-1 . '&' . $gets .'">';
+            echo '<button type="button" class="button-light">';
+            echo '<i class="fas fa-angle-left"></i>';
+            echo '</button>';
+            echo '</a>';
+        }
+        //do ranged pagination only when total pages is greater than the range
+        if ($this->pages > $this->range) {
+            $start = ($this->currentPage <= $this->range)? 1 : ($this->currentPage - $this->range);
+            $end = ($this->pages - $this->currentPage >= $this->range)? ($this->currentPage + $this->range) : $this->pages;
+        } else {
+            $start = 1;
+            $end   = $this->pages;
+        }
+        //loop through page numbers
+        for($i = $start; $i <= $end; $i++){
+            echo '<a href="?currentPage='. $i . '&' . $gets .'">';
+            echo ($i == $this->currentPage) ? '<button type="button" class="button-light active">' : '<button type="button" class="button-light">';
+            echo $i;
+            echo '</button>';
+            echo '</a>';
+        }
+        //next link button
+        if ($this->currentPage < $this->pages) {
+            echo '<a href="?currentPage='. $this->currentPage+1 . '&' . $gets .'">';
+            echo '<button type="button" class="button-light">';
+            echo '<i class="fas fa-angle-right"></i>';
+            echo '</button>';
+            echo '</a>';
         }
 
-        return $pages;
+        return;
     }
 }

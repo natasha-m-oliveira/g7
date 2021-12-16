@@ -132,7 +132,7 @@ if (!empty($_SESSION["username"]) && $_SESSION["access"] = 4) {
                         </div>
                         <div class="row">
                             <div class="col action">
-                                <a href="user.php" class="button go-back">VOLTAR</a>
+                                <a href="enrollment.php" class="button go-back">VOLTAR</a>
                                 <input type="submit" class="button" name="update-btn" id="update-btn" value="Salvar">
                             </div>
                         </div>

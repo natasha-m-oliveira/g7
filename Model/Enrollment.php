@@ -99,7 +99,7 @@ class Enrollment
 
     public function listEnrollment($where = null, $order = null, $limit = null)
     {
-        $fields = 'a.id, CONCAT(a.first_name, " ", a.last_name) AS name, a.course, a.semester, b.institution AS home, c.institution AS destination';
+        $fields = 'a.id, CONCAT(a.first_name, " ", a.last_name) AS name, a.email, a.phone, a.course, a.semester, b.institution AS home, c.institution AS destination, a.create_at, a.update_at';
         $where = strlen($where) ? 'WHERE '.$where : '';
         $order = strlen($order) ? 'ORDER BY '.$order : '';
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
@@ -128,5 +128,22 @@ class Enrollment
         );
         $enrollmentRecordById = $this->ds->select($query, $paramType, $paramValue);
         return $enrollmentRecordById;
+    }
+
+    public function exportEnrollmentDatabase()
+    {
+        $filename = "Inscrições.xls";
+        header("Content-Type: application/vnd.ms-excel");
+	    header("Content-Disposition: attachment; filename=\"$filename\"");
+        $enrollmentResult = $this->listEnrollment(null, null, null);
+        $isPrintHeader = false;
+        foreach ($enrollmentResult as $row) {
+            if (!$isPrintHeader) {
+                echo implode("\t", array_keys($row))."\n";
+                $isPrintHeader = true;
+            }
+            echo implode("\t", array_values(array_map("utf8_decode", $row)))."\n";
+        }
+        exit();
     }
 }

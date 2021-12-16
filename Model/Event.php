@@ -104,7 +104,7 @@ class Event
 
     public function listEvent($where = null, $order = null, $limit = null)
     {
-        $fields = 'a.id, a.theme, a.local, a.visible, a.category, a.date';
+        $fields = 'a.id, a.theme, a.local, CASE WHEN a.visible = 1 THEN "Sim" ELSE "Não" END visible, CASE WHEN a.category = "public" THEN "Público" ELSE "Privado" END category, a.date, a.create_at, a.update_at';
         $where = strlen($where) ? 'WHERE ' . $where : '';
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
@@ -133,5 +133,22 @@ class Event
         );
         $eventRecordById = $this->ds->select($query, $paramType, $paramValue);
         return $eventRecordById;
+    }
+
+    public function exportEventDatabase()
+    {
+        $filename = "Eventos.xls";
+        header("Content-Type: application/vnd.ms-excel");
+	    header("Content-Disposition: attachment; filename=\"$filename\"");
+        $eventResult = $this->listEvent(null, null, null);
+        $isPrintHeader = false;
+        foreach ($eventResult as $row) {
+            if (!$isPrintHeader) {
+                echo implode("\t", array_keys($row))."\n";
+                $isPrintHeader = true;
+            }
+            echo implode("\t", array_values(array_map("utf8_decode", $row)))."\n";
+        }
+        exit();
     }
 }

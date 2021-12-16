@@ -50,9 +50,9 @@
                     <li><a href="#about" data-menu-item>QUEM SOMOS</a></li>
                     <li><a href="#network" data-menu-item>REDE</a></li>
                     <li><a href="#team" data-menu-item>EQUIPE</a></li>
-                    <li><a href="#actions" data-menu-item>AÇÕES</a></li>
+                    <li><a href="#events" data-menu-item>EVENTOS</a></li>
                     <li><a href="./gallery.php" data-menu-item>GALERIA</a></li>
-                    <li><a href="#national-mobility" data-menu-item>Mobilidade Nacional</a></li>
+                    <li><a href="#national-mobility" data-menu-item>MOBILIDADE NACIONAL</a></li>
                 </ul>
             </nav>
             <a href="/settings" class="button">ENTRAR</a>

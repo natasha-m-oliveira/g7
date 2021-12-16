@@ -1,9 +1,11 @@
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const navigation = document.querySelector("[data-nav]");
 const typed = document.querySelector("[data-typed-words]");
-let page = window.location.href;
-let home = window.location.pathname;
-let list = document.querySelectorAll(".list");  
+let locationHref = window.location.href;
+let locationOrigin = window.location.origin;
+let locationPathname = window.location.pathname;
+let newLocationHref = locationOrigin+locationPathname;
+let list = document.querySelectorAll(".list");
 
 if (typed !== null) {
     const userName = typed.innerHTML;
@@ -39,10 +41,12 @@ if (typed !== null) {
     let i = 0; 
     while (i < list.length) {
         list[i].children[0].classList.remove("current");
-        if (list[i].children[0].href == page) {
+        if (list[i].children[0].href == locationHref) {
             list[i].children[0].className = 'current';
-        } else if (home == '/settings') {
+        } else if (locationPathname == '/settings' || locationPathname == '/settings/') {
             list[1].children[0].className = 'current';
+        } else if (list[i].children[0].href == newLocationHref) {
+            list[i].children[0].className = 'current';
         }
         i++;
     }

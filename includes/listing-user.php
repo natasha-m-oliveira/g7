@@ -3,11 +3,14 @@
         <h2><a href="../settings">Configurações</a> / Usuários</h2>
     </div>
     <div class="second-line">
-        <form action="" action="get">
-            <button type="submit"><i class="fas fa-search"></i></button>
+        <form action="" method="get" class="search">
+            <button type="submit" id="search-btn" name="search-btn"><i class="fas fa-search"></i></button>
             <input type="text" name="search" placeholder="Pesquisar..." value="<?= $search ?>">
         </form>
         <a class="button" href="../signup.php"><i class="fas fa-user-plus"></i></a>
+        <form action="" method="post" class="export">
+            <button type="submit" id="export-btn" name="export-btn"><i class="fas fa-download"></i></button>
+        </form>
     </div>
 </div>
 <table class="styled-table">
@@ -49,30 +52,12 @@
         } ?>
     </tbody>
 </table>
-<?php
-
-//Pagination
-$pages = $obPagination->getPages();
-?>
 <div class="pagination">
     <?php
-    if (!empty($pages)) {
-        array_filter($pages, function ($page) {
-            //GETS
-            unset($_GET['currentPage']);
-            $gets = http_build_query($_GET);
-            ?>
-            <a href="?currentPage=<?= $page['page'] . '&' . $gets ?>">
-                <button type="button" class="button-light<?= $page['current'] ? ' active' : '' ?>"><?= $page['page'] ?></button>
-            </a>
-    <?php
-        });
-    } else {
-    ?>
-        <a href="?currentPage=1">
-            <button type="button" class="button-light active">1</button>
-        </a>
-    <?php
-    }
+    //GETS
+    unset($_GET['currentPage']);
+    $gets = http_build_query($_GET);
+    //Pagination
+    $pages = $obPagination->getPages($gets);
     ?>
 </div>

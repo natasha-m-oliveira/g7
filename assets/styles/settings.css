@@ -32,6 +32,7 @@ main .container {
 body {
     /* display: flex; */
     background: var(--white);
+    color: var(--black);
 }
 
 .content header {
@@ -217,31 +218,45 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 2rem;
+    margin-left: 1rem;
     width: 4rem;
     height: 4rem;
 }
 
-.table-header form {
+.table-header form.search {
     display: flex;
     align-items: center;
     border-bottom: .2rem solid var(--green);
     border-radius: 0;
 }
 
-.table-header form input {
+.table-header form.search input {
     border-bottom: 0;
     color: var(--black);
 }
 
-.table-header form button {
+.table-header form.search button {
     background: var(--white);
     color: var(--blue-dark);
     height: 2rem;
 }
 
-.table-header form button:hover {
+.table-header form.search button:hover {
     color: var(--black);
+}
+
+.table-header form.export {
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    margin-left: 1rem;
+}
+
+.table-header form.export button {
+    background: var(--green);
+    color: var(--blue-dark);
+    width: 4rem;
+    height: 4rem;
 }
 
 .styled-table {
