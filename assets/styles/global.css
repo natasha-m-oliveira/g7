@@ -15,7 +15,6 @@ html {
     --red: #F00038;
     --yellow: #FFD400;
     --green: #94D21D;
-    --blue-light: rgba(0, 24, 87, 0.75);
     --blue-dark: #001857;
     /*1rem = 16px (User agent) = 100% (User agent)*/
     font-size: 62.5%;
@@ -47,7 +46,23 @@ input, textarea, button, .button {
     height: 5rem;
 }
 
-body, button, input, textarea {
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0 1.5rem;
+    margin: 1rem 0 2rem 0;
+    height: 4rem;
+}
+
+select option {
+    background: var(--blue-dark);
+}
+
+select option:checked {
+    background: var(--green);
+}
+
+body, button, input, textarea, select {
     /*intervalo de tamanho
     mínimo; ideal; máximo*/
     font-size: clamp(14px, 1.8rem, 2vw);
@@ -121,12 +136,18 @@ button:hover, .button:hover {
     font-weight: 400;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
     padding: 0.7rem 1.5rem;
     transition: all 0.3s ease-in-out;
 }
 
 .content header .nav a.current, .content header .nav a:hover {
     border-top: 0.2rem solid var(--green);
+}
+
+.content header .button {
+    font-weight: 700;
+    width: 10rem;
 }
 
 /*Scrollbar*/
@@ -175,23 +196,101 @@ html {
     border-radius: 50%;
     transition: 0.35s;
 }
+
 .container .anchor #top-of-page.visible {
     opacity: 1;
     visibility: visible;
 }
+
 .container .anchor a {
     color: var(--blue-dark);
 }
 
-.container .anchor a:after{
+.container .anchor a:after {
     font-family: "Font Awesome 5 Free";
     content: "\f106";
     font-weight: 900;
     font-size: 3rem;
 }
 
+/*POP-UP*/
+
+.pop-up {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.pop-up form {
+    width: min(40rem, 100%);
+    padding: 1rem 2rem;
+    background: var(--blue-dark);
+    transition: all 0.3s;
+    box-shadow: 0 0 0.5rem var(--white);
+}
+
+.pop-up form .action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.pop-up form .action .fas {
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.pop-up form .action .fas:hover {
+    color: var(--green);
+    transition: all 0.2s;
+}
+
+.pop-up form h1 {
+    font-size: 4rem;
+    line-height: normal;
+    margin-bottom: 0;
+}
+
+.pop-up form input {
+    margin-bottom: 2rem;
+}
+
+.pop-up form input[type=submit] {
+    width: 80%;
+    margin: 2rem auto;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--white);
+    border-radius: .8rem;
+}
+
+/*Error Messages*/
+
+.toast {
+    text-align: center;
+}
+
+.invalid {
+    border-bottom: .2rem solid var(--red);
+}
+
+.error-msg {
+    color: var(--red);
+}
+
+.success-msg {
+    color: var(--green);
+}
+
 @media (max-width: 60rem) {
-    html{
+    html {
         overflow-x: hidden;
     }
     .content {
@@ -216,7 +315,7 @@ html {
         overflow-y: hidden;
     }
     .content header .nav.active ul {
-        height: 100vh;
+        min-height: 100vh;
         visibility: visible;
         overflow-y: auto;
     }
@@ -256,6 +355,15 @@ html {
     .content header .nav.active .btn-mobile .burger::after {
         transform: rotate(-135deg);
         top: -0.7rem;
+    }
+    .content header .dropdown {
+        display: none;
+    }
+    .content header .settings-mobile {
+        display: block;
+    }
+    .content header .button {
+        display: none;
     }
     .container .anchor #top-of-page {
         bottom: 1rem;
