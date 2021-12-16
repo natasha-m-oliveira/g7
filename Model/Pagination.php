@@ -83,7 +83,7 @@ class Pagination
         }
         //previous link button
         if ($this->currentPage > 1) {
-            echo '<a href="?currentPage='. $this->currentPage-1 . '&' . $gets .'">';
+            echo '<a href="?currentPage='. ($this->currentPage-1) . '&' . $gets .'">';
             echo '<button type="button" class="button-light">';
             echo '<i class="fas fa-angle-left"></i>';
             echo '</button>';
@@ -98,7 +98,7 @@ class Pagination
             $end   = $this->pages;
         }
         //loop through page numbers
-        for($i = $start; $i <= $end; $i++){
+        for ($i = $start; $i <= $end; $i++) {
             echo '<a href="?currentPage='. $i . '&' . $gets .'">';
             echo ($i == $this->currentPage) ? '<button type="button" class="button-light active">' : '<button type="button" class="button-light">';
             echo $i;
@@ -107,7 +107,7 @@ class Pagination
         }
         //next link button
         if ($this->currentPage < $this->pages) {
-            echo '<a href="?currentPage='. $this->currentPage+1 . '&' . $gets .'">';
+            echo '<a href="?currentPage='. ($this->currentPage+1) . '&' . $gets .'">';
             echo '<button type="button" class="button-light">';
             echo '<i class="fas fa-angle-right"></i>';
             echo '</button>';
